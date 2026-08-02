@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Studio Timeline Editor</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:#080B14;
+color:white;
+padding:30px;
+
+}
+
+
+.container{
+
+max-width:1400px;
+margin:auto;
+
+}
+
+
+.logo{
+
+font-size:35px;
+font-weight:bold;
+color:#00D4FF;
+margin-bottom:25px;
+
+}
+
+
+.editor{
+
+background:#111827;
+padding:30px;
+border-radius:25px;
+
+}
+
+
+.preview{
+
+height:350px;
+
+background:#000;
+
+border-radius:20px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:30px;
+
+color:#7dd3fc;
+
+margin-bottom:30px;
+
+}
+
+
+.controls{
+
+display:flex;
+
+gap:15px;
+
+}
+
+
+button{
+
+padding:14px 25px;
+
+border:none;
+
+border-radius:12px;
+
+background:#00D4FF;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+
+.timeline{
+
+margin-top:35px;
+
+background:#1F2937;
+
+padding:25px;
+
+border-radius:20px;
+
+}
+
+
+.track{
+
+display:flex;
+
+align-items:center;
+
+margin-bottom:20px;
+
+}
+
+
+.name{
+
+width:130px;
+
+font-weight:bold;
+
+}
+
+
+.bar{
+
+height:45px;
+
+background:#374151;
+
+border-radius:10px;
+
+flex:1;
+
+display:flex;
+
+align-items:center;
+
+padding-left:20px;
+
+}
+
+
+.video{
+
+background:#2563eb;
+
+width:70%;
+
+}
+
+
+.voice{
+
+background:#16a34a;
+
+width:50%;
+
+}
+
+
+.music{
+
+background:#9333ea;
+
+width:80%;
+
+}
+
+
+.subtitle{
+
+background:#ea580c;
+
+width:60%;
+
+}
+
+
+.tools{
+
+margin-top:25px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+
+gap:15px;
+
+}
+
+
+.tool{
+
+background:#1F2937;
+
+padding:20px;
+
+border-radius:15px;
+
+text-align:center;
+
+cursor:pointer;
+
+}
+
+
+.tool:hover{
+
+background:#00D4FF;
+
+color:black;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="logo">
+
+🎬 AI Studio Editor
+
+</div>
+
+
+
+<div class="editor">
+
+
+<div class="preview">
+
+Video Preview
+
+</div>
+
+
+
+<div class="controls">
+
+<button>
+▶ Play
+</button>
+
+<button>
+⏸ Pause
+</button>
+
+<button>
+✂ Cut
+</button>
+
+<button>
+🗑 Delete
+</button>
+
+<button>
+💾 Save
+</button>
+
+</div>
+
+
+
+<div class="timeline">
+
+
+<h2>
+Timeline
+</h2>
+
+
+<br>
+
+
+<div class="track">
+
+<div class="name">
+🎥 Video
+</div>
+
+<div class="bar video">
+Video Clip
+</div>
+
+</div>
+
+
+
+<div class="track">
+
+<div class="name">
+🎙 Voice
+</div>
+
+<div class="bar voice">
+AI Narration
+</div>
+
+</div>
+
+
+
+<div class="track">
+
+<div class="name">
+🎵 Music
+</div>
+
+<div class="bar music">
+Background Music
+</div>
+
+</div>
+
+
+
+<div class="track">
+
+<div class="name">
+📝 Subtitle
+</div>
+
+<div class="bar subtitle">
+Captions
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="tools">
+
+
+<div class="tool">
+➕ Add Media
+</div>
+
+
+<div class="tool">
+🎨 Effects
+</div>
+
+
+<div class="tool">
+✨ Filters
+</div>
+
+
+<div class="tool">
+🔊 Audio
+</div>
+
+
+<div class="tool">
+📝 Text
+</div>
+
+
+<div class="tool">
+📤 Export
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>
