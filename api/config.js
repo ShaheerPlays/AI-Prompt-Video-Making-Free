@@ -1,11 +1,14 @@
-// API Configuration
+// AI Studio API Configuration
 
 const API = {
 
-    // Your backend URL
+    // Change this when you deploy your backend
+    // Example: "https://your-server.com"
     BASE_URL: "http://localhost:8000",
 
+
     // API Endpoints
+
     GENERATE_VIDEO: "/api/generate",
 
     ENHANCE_PROMPT: "/api/enhance",
@@ -16,8 +19,17 @@ const API = {
 
     SUBTITLES: "/api/subtitles",
 
-    VOICE: "/api/voice"
+    VOICE: "/api/voice",
+
+
+    // Helper function
+    getURL(endpoint){
+
+        return this.BASE_URL + endpoint;
+
+    }
 
 };
+
 
 export default API;
