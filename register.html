@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Account | AI Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:#080B14;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+
+}
+
+
+.box{
+
+background:#111827;
+width:400px;
+padding:35px;
+border-radius:25px;
+
+}
+
+
+.logo{
+
+text-align:center;
+font-size:32px;
+font-weight:bold;
+color:#00D4FF;
+margin-bottom:20px;
+
+}
+
+
+h1{
+
+text-align:center;
+margin-bottom:25px;
+
+}
+
+
+input{
+
+width:100%;
+padding:15px;
+margin-top:15px;
+
+background:#1F2937;
+
+border:none;
+
+border-radius:12px;
+
+color:white;
+
+}
+
+
+button{
+
+width:100%;
+
+padding:16px;
+
+margin-top:25px;
+
+background:#00D4FF;
+
+border:none;
+
+border-radius:12px;
+
+font-weight:bold;
+
+font-size:17px;
+
+cursor:pointer;
+
+}
+
+
+button:hover{
+
+transform:scale(1.03);
+
+}
+
+
+a{
+
+display:block;
+
+text-align:center;
+
+margin-top:20px;
+
+color:#00D4FF;
+
+text-decoration:none;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="box">
+
+
+<div class="logo">
+
+🤖 AI Studio
+
+</div>
+
+
+<h1>
+
+Create Account
+
+</h1>
+
+
+
+<input id="username" placeholder="Username">
+
+
+<input id="email" placeholder="Email">
+
+
+<input id="pin" type="password" placeholder="Create PIN">
+
+
+<input id="confirmPin" type="password" placeholder="Confirm PIN">
+
+
+
+<button onclick="signup()">
+
+Create Account
+
+</button>
+
+
+
+<a href="login.html">
+
+Already have an account? Login
+
+</a>
+
+
+
+</div>
+
+
+
+<script>
+
+
+function signup(){
+
+
+let username=document.getElementById("username").value;
+
+let email=document.getElementById("email").value;
+
+let pin=document.getElementById("pin").value;
+
+let confirm=document.getElementById("confirmPin").value;
+
+
+
+if(pin!==confirm){
+
+alert("PIN does not match!");
+
+return;
+
+}
+
+
+
+if(pin.length<4){
+
+alert("PIN must be at least 4 digits!");
+
+return;
+
+}
+
+
+
+localStorage.setItem("username",username);
+
+localStorage.setItem("email",email);
+
+localStorage.setItem("pin",pin);
+
+
+
+alert("Account created successfully!");
+
+window.location="login.html";
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
