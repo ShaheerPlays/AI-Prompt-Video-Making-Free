@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Text To Video | AI Studio</title>
+<title>AI Text Video Creator</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -20,7 +20,6 @@ box-sizing:border-box;
 font-family:Poppins,sans-serif;
 }
 
-
 body{
 
 background:#080B14;
@@ -32,13 +31,13 @@ padding:30px;
 
 .container{
 
-max-width:1100px;
+max-width:1200px;
 margin:auto;
 
 }
 
 
-.top{
+.header{
 
 display:flex;
 justify-content:space-between;
@@ -62,16 +61,26 @@ color:#00D4FF;
 background:#1F2937;
 padding:12px 20px;
 border-radius:12px;
-color:white;
 text-decoration:none;
+color:white;
 
 }
 
 
-.card{
+
+.grid{
+
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:25px;
+
+}
+
+
+.box{
 
 background:#111827;
-padding:35px;
+padding:30px;
 border-radius:25px;
 
 }
@@ -79,16 +88,7 @@ border-radius:25px;
 
 h1{
 
-font-size:42px;
-margin-bottom:10px;
-
-}
-
-
-p{
-
-color:#cbd5e1;
-margin-bottom:25px;
+margin-bottom:15px;
 
 }
 
@@ -96,61 +96,64 @@ margin-bottom:25px;
 label{
 
 display:block;
-margin-top:20px;
+margin-top:18px;
 margin-bottom:8px;
 font-weight:bold;
 
 }
 
 
-textarea{
+textarea,
+select,
+input{
 
 width:100%;
-height:200px;
-
-padding:20px;
+padding:15px;
 
 background:#1F2937;
 
 border:none;
 
-border-radius:15px;
+border-radius:12px;
 
 color:white;
 
-font-size:16px;
+}
 
+
+
+textarea{
+
+height:180px;
 resize:none;
 
 }
 
 
 
-select,input{
+.preview{
 
-width:100%;
-
-padding:15px;
+height:250px;
 
 background:#1F2937;
 
-color:white;
+border-radius:20px;
 
-border:none;
+display:flex;
 
-border-radius:12px;
+justify-content:center;
+
+align-items:center;
+
+overflow:hidden;
 
 }
 
 
+.preview img{
 
-.options{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-
-gap:20px;
+max-width:100%;
+max-height:100%;
 
 }
 
@@ -160,9 +163,9 @@ button{
 
 width:100%;
 
-padding:18px;
+padding:17px;
 
-margin-top:30px;
+margin-top:25px;
 
 background:#00D4FF;
 
@@ -180,29 +183,50 @@ cursor:pointer;
 
 
 
-button:hover{
+.progress{
 
-transform:scale(1.03);
+height:18px;
+
+background:#374151;
+
+border-radius:20px;
+
+margin-top:20px;
+
+overflow:hidden;
 
 }
 
 
 
+.bar{
+
+height:100%;
+
+width:0%;
+
+background:#00D4FF;
+
+transition:.3s;
+
+}
+
+
 .status{
 
-margin-top:25px;
-
-background:#1F2937;
+margin-top:20px;
 
 padding:20px;
+
+background:#1F2937;
 
 border-radius:15px;
 
 }
 
 
-</style>
 
+</style>
 
 </head>
 
@@ -213,17 +237,17 @@ border-radius:15px;
 <div class="container">
 
 
-<div class="top">
+<div class="header">
 
 
 <div class="logo">
 
-🎥 AI Studio
+🎥 AI Video Studio
 
 </div>
 
 
-<a href="dashboard.html" class="back">
+<a href="dashboard-new.html" class="back">
 
 ← Dashboard
 
@@ -234,41 +258,59 @@ border-radius:15px;
 
 
 
-<div class="card">
+
+<div class="grid">
+
+
+<div class="box">
 
 
 <h1>
 
-Text To Video
+Create AI Video
 
 </h1>
 
 
-<p>
-
-Describe your idea and create an AI video.
-
-</p>
-
-
-
 <label>
 
-Video Prompt
+Video Idea / Prompt
 
 </label>
 
 
 <textarea id="prompt"
-placeholder="Example: Create a cinematic documentary about the planets..."></textarea>
+placeholder="Example: Create a cinematic documentary about Mars..."></textarea>
 
 
 
+<label>
 
-<div class="options">
+Upload Image (Optional)
+
+</label>
 
 
-<div>
+<input type="file" id="image" accept="image/*">
+
+
+
+<label>
+
+Resolution
+
+</label>
+
+
+<select>
+
+<option>720p</option>
+
+<option selected>1080p</option>
+
+</select>
+
+
 
 <label>
 
@@ -291,32 +333,7 @@ Duration
 
 </select>
 
-</div>
 
-
-
-<div>
-
-<label>
-
-Quality
-
-</label>
-
-
-<select>
-
-<option>720p</option>
-
-<option selected>1080p</option>
-
-</select>
-
-</div>
-
-
-
-<div>
 
 <label>
 
@@ -337,15 +354,11 @@ AI Voice
 
 </select>
 
-</div>
 
-
-
-<div>
 
 <label>
 
-Music
+Background Music
 
 </label>
 
@@ -362,11 +375,6 @@ Music
 
 </select>
 
-</div>
-
-
-</div>
-
 
 
 <label>
@@ -379,17 +387,55 @@ Automatic Subtitles
 
 
 
-<button onclick="createVideo()">
+<button onclick="generateVideo()">
 
-🚀 Generate Video
+🚀 Generate AI Video
 
 </button>
 
 
 
+<div class="progress">
+
+<div class="bar" id="bar"></div>
+
+</div>
+
+
+
 <div class="status" id="status">
 
-Waiting for your prompt...
+Waiting for generation...
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="box">
+
+
+<h2>
+
+Preview
+
+</h2>
+
+
+<br>
+
+
+<div class="preview" id="preview">
+
+🖼 Image Preview
+
+</div>
+
 
 </div>
 
@@ -405,7 +451,33 @@ Waiting for your prompt...
 <script>
 
 
-function createVideo(){
+document.getElementById("image").onchange=function(e){
+
+
+let file=e.target.files[0];
+
+
+if(file){
+
+
+let img=document.createElement("img");
+
+img.src=URL.createObjectURL(file);
+
+
+document.getElementById("preview").innerHTML="";
+
+document.getElementById("preview").appendChild(img);
+
+
+}
+
+
+}
+
+
+
+function generateVideo(){
 
 
 let prompt=document.getElementById("prompt").value;
@@ -413,31 +485,52 @@ let prompt=document.getElementById("prompt").value;
 
 if(prompt==""){
 
-alert("Please enter a video idea.");
+alert("Please write a video idea first!");
 
 return;
 
 }
 
 
-document.getElementById("status").innerHTML=
 
-"⏳ AI is preparing your video...";
+let bar=document.getElementById("bar");
 
-
-setTimeout(()=>{
+let status=document.getElementById("status");
 
 
-document.getElementById("status").innerHTML=
-
-"✅ Video created successfully!";
+let progress=0;
 
 
-},3000);
+status.innerHTML="🤖 AI is creating your video...";
+
+
+
+let timer=setInterval(()=>{
+
+
+progress+=5;
+
+bar.style.width=progress+"%";
+
+
+if(progress>=100){
+
+
+clearInterval(timer);
+
+
+status.innerHTML="✅ Video Generated Successfully!";
+
+
+}
+
+
+},200);
 
 
 
 }
+
 
 
 </script>
