@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Login | AI Studio</title>
+<title>Sign In | AI Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -18,6 +18,7 @@ padding:0;
 box-sizing:border-box;
 font-family:Poppins,sans-serif;
 }
+
 
 body{
 
@@ -93,9 +94,9 @@ border:none;
 
 border-radius:12px;
 
-font-weight:bold;
-
 font-size:17px;
+
+font-weight:bold;
 
 cursor:pointer;
 
@@ -144,23 +145,22 @@ text-decoration:none;
 
 <h1>
 
-Login
+Sign In
 
 </h1>
 
 
 
-<input id="username" placeholder="Username">
-
+<input id="username" placeholder="Enter Username">
 
 
 <input id="pin" type="password" placeholder="Enter PIN">
 
 
 
-<button onclick="login()">
+<button onclick="signin()">
 
-🔓 Login
+🔐 Login
 
 </button>
 
@@ -181,7 +181,7 @@ Create New Account
 <script>
 
 
-function login(){
+function signin(){
 
 
 let username=document.getElementById("username").value;
@@ -189,18 +189,19 @@ let username=document.getElementById("username").value;
 let pin=document.getElementById("pin").value;
 
 
-let savedUser=localStorage.getItem("username");
+
+let savedUsername=localStorage.getItem("username");
 
 let savedPin=localStorage.getItem("pin");
 
 
 
-if(username===savedUser && pin===savedPin){
+if(username===savedUsername && pin===savedPin){
 
 
 alert("Login successful!");
 
-window.location="dashboard.html";
+window.location="dashboard-new.html";
 
 
 }
@@ -208,7 +209,7 @@ window.location="dashboard.html";
 else{
 
 
-alert("Wrong username or PIN!");
+alert("Incorrect username or PIN!");
 
 }
 
