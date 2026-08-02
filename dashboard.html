@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Video Studio Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:#090B15;
+color:white;
+
+display:flex;
+
+}
+
+.sidebar{
+
+width:260px;
+height:100vh;
+
+background:#111827;
+
+padding:25px;
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+overflow:auto;
+
+}
+
+.logo{
+
+font-size:28px;
+font-weight:700;
+color:#00D4FF;
+
+margin-bottom:40px;
+
+}
+
+.logo span{
+
+color:white;
+
+}
+
+.menu{
+
+display:flex;
+flex-direction:column;
+gap:15px;
+
+}
+
+.menu a{
+
+text-decoration:none;
+color:white;
+
+padding:15px;
+
+border-radius:12px;
+
+background:#1F2937;
+
+transition:.3s;
+
+}
+
+.menu a:hover{
+
+background:#00D4FF;
+
+color:black;
+
+}
+
+.main{
+
+margin-left:260px;
+
+width:calc(100% - 260px);
+
+padding:40px;
+
+}
+
+.topbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:40px;
+
+}
+
+.search{
+
+width:450px;
+
+padding:15px;
+
+border:none;
+
+border-radius:12px;
+
+background:#1F2937;
+
+color:white;
+
+}
+
+.profile{
+
+width:55px;
+
+height:55px;
+
+background:#00D4FF;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:22px;
+
+font-weight:bold;
+
+color:black;
+
+}
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
+
+}
+
+.card{
+
+background:#161E2E;
+
+padding:30px;
+
+border-radius:20px;
+
+transition:.3s;
+
+cursor:pointer;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 0 25px rgba(0,212,255,.35);
+
+}
+
+.card h2{
+
+margin-top:15px;
+
+}
+
+.card p{
+
+opacity:.8;
+
+margin-top:10px;
+
+}
+
+.icon{
+
+font-size:45px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+AI <span>Studio</span>
+
+</div>
+
+<div class="menu">
+
+<a href="#">🏠 Dashboard</a>
+
+<a href="#">🎥 Text → Video</a>
+
+<a href="#">🖼 Image → Video</a>
+
+<a href="#">🎬 Edit Video</a>
+
+<a href="#">🎙 AI Voices</a>
+
+<a href="#">📝 Subtitles</a>
+
+<a href="#">📂 Projects</a>
+
+<a href="#">⚙ Settings</a>
+
+</div>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<input
+class="search"
+placeholder="Search Projects...">
+
+<div class="profile">
+
+S
+
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="icon">🎥</div>
+
+<h2>Text to Video</h2>
+
+<p>Create AI videos using prompts.</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🖼</div>
+
+<h2>Image to Video</h2>
+
+<p>Turn photos into animated videos.</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🎬</div>
+
+<h2>Edit Video</h2>
+
+<p>Upload and edit existing videos.</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🤖</div>
+
+<h2>Gemini AI</h2>
+
+<p>Improve prompts with AI assistance.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
