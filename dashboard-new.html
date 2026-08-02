@@ -1,55 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Studio Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+
+body{
+
+background:#080B14;
+color:white;
+
+display:flex;
+
+}
+
+
+.sidebar{
+
+width:260px;
+height:100vh;
+
+background:#111827;
+
+padding:25px;
+
+position:fixed;
+
+}
+
+
+.logo{
+
+font-size:30px;
+font-weight:bold;
+color:#00D4FF;
+
+margin-bottom:35px;
+
+}
+
+
+.menu{
+
+display:flex;
+flex-direction:column;
+gap:12px;
+
+}
+
+
+.menu a{
+
+text-decoration:none;
+
+color:white;
+
+background:#1F2937;
+
+padding:14px;
+
+border-radius:12px;
+
+transition:.3s;
+
+}
+
+
+.menu a:hover{
+
+background:#00D4FF;
+
+color:black;
+
+}
+
+
+
+.main{
+
+margin-left:260px;
+
+width:100%;
+
+padding:35px;
+
+}
+
+
+
+.top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:35px;
+
+}
+
+
+
+.welcome{
+
+font-size:32px;
+
+}
+
+
+
+.profile{
+
+width:55px;
+
+height:55px;
+
+border-radius:50%;
+
+background:#00D4FF;
+
+color:black;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-weight:bold;
+
+font-size:22px;
+
+}
+
+
+
+button{
+
+background:#ef4444;
+
+color:white;
+
+border:none;
+
+padding:12px 20px;
+
+border-radius:12px;
+
+cursor:pointer;
+
+margin-left:15px;
+
+}
+
+
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
+
+}
+
+
+
+.card{
+
+background:#111827;
+
+padding:30px;
+
+border-radius:20px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+
+.card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 0 25px rgba(0,212,255,.3);
+
+}
+
+
+
+.icon{
+
+font-size:45px;
+
+margin-bottom:15px;
+
+}
+
+
+.card h2{
+
+color:#00D4FF;
+
+}
+
+
+
+.card p{
+
+color:#cbd5e1;
+
+margin-top:10px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+<div class="sidebar">
+
+
+<div class="logo">
+
+🤖 AI Studio
+
+</div>
+
+
+
 <div class="menu">
+
 
 <a href="dashboard-new.html">
 🏠 Dashboard
 </a>
 
+
 <a href="ai-text-video.html">
-🎥 Text → Video
+🎥 Text To Video
 </a>
 
+
 <a href="image2video.html">
-🖼 Image → Video
+🖼 Image To Video
 </a>
+
 
 <a href="editor.html">
 🎬 Video Editor
 </a>
 
+
 <a href="voice.html">
 🎙 AI Voice
 </a>
+
 
 <a href="subtitles.html">
 📝 Subtitles
 </a>
 
+
 <a href="library.html">
 📂 Projects
 </a>
+
 
 <a href="export.html">
 📤 Export
 </a>
 
-<a href="generate.html">
-🚀 AI Generator
+
+<a href="gemini.html">
+🤖 Gemini AI
 </a>
+
 
 <a href="settings.html">
 ⚙ Settings
 </a>
 
-<a href="profile.html">
-👤 Profile
-</a>
 
 <a href="about.html">
 🌐 About
 </a>
 
+
 <a href="help.html">
 📚 Help
 </a>
 
+
 </div>
+
+
+</div>
+
+
+
+
+<div class="main">
+
+
+<div class="top">
+
+
+<div class="welcome">
+
+Welcome, <span id="username">User</span> 👋
+
+</div>
+
+
+<div>
+
+
+<span class="profile" id="profile">
+
+U
+
+</span>
+
+
+<button onclick="logout()">
+
+Logout
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="cards">
+
+
+<div class="card" onclick="location.href='ai-text-video.html'">
+
+<div class="icon">
+🎥
+</div>
+
+<h2>
+Text To Video
+</h2>
+
+<p>
+Create videos from your ideas.
+</p>
+
+</div>
+
+
+
+
+<div class="card" onclick="location.href='image2video.html'">
+
+<div class="icon">
+🖼
+</div>
+
+<h2>
+Image To Video
+</h2>
+
+<p>
+Animate your pictures.
+</p>
+
+</div>
+
+
+
+
+<div class="card" onclick="location.href='editor.html'">
+
+<div class="icon">
+🎬
+</div>
+
+<h2>
+Editor
+</h2>
+
+<p>
+Edit your AI videos.
+</p>
+
+</div>
+
+
+
+
+<div class="card" onclick="location.href='voice.html'">
+
+<div class="icon">
+🎙
+</div>
+
+<h2>
+AI Voice
+</h2>
+
+<p>
+Generate narration.
+</p>
+
+</div>
+
+
+
+
+<div class="card" onclick="location.href='subtitles.html'">
+
+<div class="icon">
+📝
+</div>
+
+<h2>
+Subtitles
+</h2>
+
+<p>
+Create captions.
+</p>
+
+</div>
+
+
+
+
+<div class="card" onclick="location.href='library.html'">
+
+<div class="icon">
+📂
+</div>
+
+<h2>
+Library
+</h2>
+
+<p>
+Manage projects.
+</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<script>
+
+
+let user = localStorage.getItem("username");
+
+
+if(!user){
+
+window.location="signin.html";
+
+}
+
+
+document.getElementById("username").innerHTML=user;
+
+
+document.getElementById("profile").innerHTML=
+user.charAt(0).toUpperCase();
+
+
+
+function logout(){
+
+localStorage.removeItem("username");
+
+localStorage.removeItem("email");
+
+localStorage.removeItem("pin");
+
+
+window.location="signin.html";
+
+
+}
+
+
+</script>
+
+
+
+</body>
+
+</html>
