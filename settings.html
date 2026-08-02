@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Settings - AI Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#090B15;
+color:white;
+padding:40px;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+}
+
+h1{
+font-size:40px;
+margin-bottom:30px;
+}
+
+.card{
+background:#151b2d;
+padding:25px;
+border-radius:20px;
+margin-bottom:25px;
+}
+
+.card h2{
+margin-bottom:20px;
+color:#00D4FF;
+}
+
+input{
+width:100%;
+padding:15px;
+margin:10px 0;
+border:none;
+border-radius:12px;
+background:#1f2937;
+color:white;
+font-size:15px;
+}
+
+button{
+padding:15px 25px;
+border:none;
+border-radius:12px;
+background:#00D4FF;
+color:black;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+opacity:.9;
+}
+
+.switch{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:15px 0;
+padding:15px;
+background:#1f2937;
+border-radius:12px;
+}
+
+input[type=checkbox]{
+width:25px;
+height:25px;
+}
+
+.logout{
+background:#ef4444;
+color:white;
+}
+
+.delete{
+background:#991b1b;
+color:white;
+margin-left:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚙ Settings</h1>
+
+<div class="card">
+
+<h2>👤 Profile</h2>
+
+<input type="text" placeholder="Full Name">
+
+<input type="email" placeholder="Email">
+
+<button>Save Changes</button>
+
+</div>
+
+<div class="card">
+
+<h2>🔒 Security</h2>
+
+<input type="password" placeholder="Current Password">
+
+<input type="password" placeholder="New Password">
+
+<input type="password" placeholder="New 6-Digit PIN">
+
+<button>Update Security</button>
+
+</div>
+
+<div class="card">
+
+<h2>🎥 Video Settings</h2>
+
+<div class="switch">
+
+<span>Default Resolution (1080P)</span>
+
+<input type="checkbox" checked>
+
+</div>
+
+<div class="switch">
+
+<span>Automatic Subtitles</span>
+
+<input type="checkbox" checked>
+
+</div>
+
+<div class="switch">
+
+<span>AI Voice</span>
+
+<input type="checkbox" checked>
+
+</div>
+
+<div class="switch">
+
+<span>Background Music</span>
+
+<input type="checkbox">
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🚪 Account</h2>
+
+<button class="logout" onclick="logout()">
+
+Logout
+
+</button>
+
+<button class="delete">
+
+Delete Account
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function logout(){
+
+alert("Logged Out Successfully");
+
+window.location.href="login.html";
+
+}
+
+</script>
+
+</body>
+</html>
