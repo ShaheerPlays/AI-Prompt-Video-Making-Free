@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Settings - AI Studio</title>
+<title>Settings | AI Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 
 <style>
 
@@ -17,192 +20,342 @@ box-sizing:border-box;
 font-family:Poppins,sans-serif;
 }
 
+
 body{
-background:#090B15;
+
+background:#080B14;
 color:white;
 padding:40px;
+
 }
+
 
 .container{
-max-width:1000px;
+
+max-width:900px;
 margin:auto;
+
 }
 
-h1{
-font-size:40px;
-margin-bottom:30px;
-}
 
-.card{
-background:#151b2d;
-padding:25px;
-border-radius:20px;
-margin-bottom:25px;
-}
+.header{
 
-.card h2{
-margin-bottom:20px;
-color:#00D4FF;
-}
-
-input{
-width:100%;
-padding:15px;
-margin:10px 0;
-border:none;
-border-radius:12px;
-background:#1f2937;
-color:white;
-font-size:15px;
-}
-
-button{
-padding:15px 25px;
-border:none;
-border-radius:12px;
-background:#00D4FF;
-color:black;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-margin-top:10px;
-}
-
-button:hover{
-opacity:.9;
-}
-
-.switch{
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin:15px 0;
-padding:15px;
-background:#1f2937;
+margin-bottom:30px;
+
+}
+
+
+.logo{
+
+font-size:35px;
+font-weight:bold;
+color:#00D4FF;
+
+}
+
+
+.back{
+
+background:#1F2937;
+padding:12px 20px;
 border-radius:12px;
-}
-
-input[type=checkbox]{
-width:25px;
-height:25px;
-}
-
-.logout{
-background:#ef4444;
 color:white;
+text-decoration:none;
+
 }
 
-.delete{
-background:#991b1b;
-color:white;
-margin-left:10px;
+
+.card{
+
+background:#111827;
+padding:30px;
+border-radius:25px;
+margin-bottom:25px;
+
 }
+
+
+h1{
+
+margin-bottom:20px;
+
+}
+
+
+h2{
+
+color:#00D4FF;
+margin-bottom:15px;
+
+}
+
+
+label{
+
+display:block;
+margin-top:15px;
+margin-bottom:8px;
+
+}
+
+
+input,select{
+
+width:100%;
+padding:15px;
+
+background:#1F2937;
+
+border:none;
+
+border-radius:12px;
+
+color:white;
+
+}
+
+
+
+button{
+
+width:100%;
+padding:16px;
+
+margin-top:20px;
+
+background:#00D4FF;
+
+border:none;
+
+border-radius:12px;
+
+font-weight:bold;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+
+button:hover{
+
+transform:scale(1.03);
+
+}
+
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
-<h1>⚙ Settings</h1>
 
-<div class="card">
+<div class="header">
 
-<h2>👤 Profile</h2>
 
-<input type="text" placeholder="Full Name">
+<div class="logo">
 
-<input type="email" placeholder="Email">
-
-<button>Save Changes</button>
+⚙ AI Studio Settings
 
 </div>
 
-<div class="card">
 
-<h2>🔒 Security</h2>
+<a href="dashboard-new.html" class="back">
 
-<input type="password" placeholder="Current Password">
+← Dashboard
 
-<input type="password" placeholder="New Password">
+</a>
 
-<input type="password" placeholder="New 6-Digit PIN">
-
-<button>Update Security</button>
 
 </div>
 
+
+
+
 <div class="card">
 
-<h2>🎥 Video Settings</h2>
 
-<div class="switch">
+<h1>
 
-<span>Default Resolution (1080P)</span>
+Account Settings
+
+</h1>
+
+
+<label>
+
+Username
+
+</label>
+
+<input id="username" readonly>
+
+
+
+<label>
+
+Email
+
+</label>
+
+<input id="email" readonly>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+
+🎥 Video Defaults
+
+</h2>
+
+
+<label>
+
+Default Resolution
+
+</label>
+
+
+<select>
+
+<option>720p</option>
+
+<option selected>1080p</option>
+
+</select>
+
+
+
+<label>
+
+Default Duration
+
+</label>
+
+
+<select>
+
+<option>5 Minutes</option>
+
+<option>10 Minutes</option>
+
+<option>30 Minutes</option>
+
+</select>
+
+
+
+<label>
+
+Default Voice
+
+</label>
+
+
+<select>
+
+<option>Male English</option>
+
+<option>Female English</option>
+
+<option>Male Urdu</option>
+
+<option>Female Urdu</option>
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+
+🔔 Preferences
+
+</h2>
+
+
+<label>
 
 <input type="checkbox" checked>
 
-</div>
+ Enable Notifications
 
-<div class="switch">
+</label>
 
-<span>Automatic Subtitles</span>
 
-<input type="checkbox" checked>
 
-</div>
-
-<div class="switch">
-
-<span>AI Voice</span>
+<label>
 
 <input type="checkbox" checked>
 
-</div>
+ Auto Save Projects
 
-<div class="switch">
+</label>
 
-<span>Background Music</span>
 
-<input type="checkbox">
 
-</div>
+<button onclick="saveSettings()">
 
-</div>
-
-<div class="card">
-
-<h2>🚪 Account</h2>
-
-<button class="logout" onclick="logout()">
-
-Logout
+💾 Save Settings
 
 </button>
 
-<button class="delete">
-
-Delete Account
-
-</button>
 
 </div>
 
+
 </div>
+
+
+
 
 <script>
 
-function logout(){
 
-alert("Logged Out Successfully");
+document.getElementById("username").value =
+localStorage.getItem("username") || "User";
 
-window.location.href="login.html";
+
+document.getElementById("email").value =
+localStorage.getItem("email") || "No email";
+
+
+
+function saveSettings(){
+
+alert("Settings saved successfully!");
 
 }
 
+
 </script>
 
+
+
 </body>
+
 </html>
