@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Editor - AI Video Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0b1020;
+color:white;
+display:flex;
+height:100vh;
+}
+
+.sidebar{
+width:260px;
+background:#111827;
+padding:20px;
+}
+
+.sidebar h2{
+margin-bottom:25px;
+color:#00d4ff;
+}
+
+.sidebar button{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+background:#1f2937;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.sidebar button:hover{
+background:#00d4ff;
+color:black;
+}
+
+.main{
+flex:1;
+padding:30px;
+overflow:auto;
+}
+
+.upload{
+border:2px dashed #00d4ff;
+padding:35px;
+border-radius:15px;
+text-align:center;
+background:#151b2d;
+cursor:pointer;
+}
+
+.upload input{
+display:none;
+}
+
+video{
+width:100%;
+margin-top:25px;
+border-radius:15px;
+background:black;
+display:none;
+}
+
+.timeline{
+margin-top:25px;
+height:80px;
+background:#151b2d;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#999;
+}
+
+.actions{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-top:25px;
+}
+
+.actions button{
+padding:15px;
+border:none;
+border-radius:10px;
+background:#00d4ff;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+.export{
+margin-top:30px;
+padding:18px;
+width:100%;
+font-size:18px;
+background:#7c3aed;
+color:white;
+border:none;
+border-radius:12px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>AI Editor</h2>
+
+<button>✂ Trim</button>
+<button>🎵 Add Music</button>
+<button>📝 Auto Subtitles</button>
+<button>🎨 Filters</button>
+<button>🤖 AI Enhance</button>
+<button>🔊 Voice</button>
+
+</div>
+
+<div class="main">
+
+<label class="upload">
+
+<h2>🎬 Upload Video</h2>
+
+<p>Click here to choose a video</p>
+
+<input type="file" id="videoFile" accept="video/*">
+
+</label>
+
+<video id="player" controls></video>
+
+<div class="timeline">
+
+Timeline (Coming Soon)
+
+</div>
+
+<div class="actions">
+
+<button>Trim</button>
+
+<button>Add Subtitle</button>
+
+<button>Add Music</button>
+
+<button>Enhance</button>
+
+<button>Remove Noise</button>
+
+<button>Stabilize</button>
+
+</div>
+
+<button class="export">
+
+Export Video
+
+</button>
+
+</div>
+
+<script>
+
+const input=document.getElementById("videoFile");
+
+const player=document.getElementById("player");
+
+input.addEventListener("change",()=>{
+
+const file=input.files[0];
+
+if(file){
+
+player.src=URL.createObjectURL(file);
+
+player.style.display="block";
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
