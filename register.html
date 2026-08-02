@@ -110,13 +110,9 @@ transform:scale(1.03);
 a{
 
 display:block;
-
 text-align:center;
-
 margin-top:20px;
-
 color:#00D4FF;
-
 text-decoration:none;
 
 }
@@ -169,7 +165,7 @@ Create Account
 
 
 
-<a href="login.html">
+<a href="signin.html">
 
 Already have an account? Login
 
@@ -194,6 +190,16 @@ let email=document.getElementById("email").value;
 let pin=document.getElementById("pin").value;
 
 let confirm=document.getElementById("confirmPin").value;
+
+
+
+if(username=="" || email=="" || pin==""){
+
+alert("Please fill all fields!");
+
+return;
+
+}
 
 
 
@@ -227,7 +233,7 @@ localStorage.setItem("pin",pin);
 
 alert("Account created successfully!");
 
-window.location="login.html";
+window.location="signin.html";
 
 
 }
