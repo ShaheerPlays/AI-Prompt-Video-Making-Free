@@ -1,8 +1,12 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
+from datetime import datetime
 
 
 router = APIRouter()
+
+
+projects = []
 
 
 class VideoRequest(BaseModel):
@@ -18,24 +22,36 @@ class VideoRequest(BaseModel):
 @router.post("/api/generate")
 async def generate_video(request: VideoRequest):
 
+
+    project = {
+
+        "id": len(projects) + 1,
+
+        "prompt": request.prompt,
+
+        "quality": request.quality,
+
+        "duration": request.duration,
+
+        "voice": request.voice,
+
+        "subtitles": request.subtitles,
+
+        "created": str(datetime.now())
+
+    }
+
+
+    projects.append(project)
+
+
+
     return {
 
-        "status": "success",
+        "status":"success",
 
-        "message": "Video generation request received",
+        "message":"Video project created",
 
-        "video": {
-
-            "prompt": request.prompt,
-
-            "quality": request.quality,
-
-            "duration": request.duration,
-
-            "voice": request.voice,
-
-            "subtitles": request.subtitles
-
-        }
+        "project":project
 
     }
