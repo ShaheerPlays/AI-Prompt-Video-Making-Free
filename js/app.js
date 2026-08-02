@@ -1,181 +1,181 @@
-// ===============================
-// AI Video Studio - app.js
-// ===============================
+// AI Studio Main JavaScript
 
-console.log("AI Video Studio Loaded");
+import API from "../api/config.js";
 
-// -------------------------------
-// Progress Bar
-// -------------------------------
 
-function startProgress(barId = "progressBar") {
+// Generate AI Video
 
-    const bar = document.getElementById(barId);
+async function generateVideo(prompt, settings){
 
-    if (!bar) return;
+    try{
 
-    let progress = 0;
+        const response = await fetch(
+            API.getURL(API.GENERATE_VIDEO),
+            {
+                method:"POST",
 
-    bar.style.width = "0%";
+                headers:{
+                    "Content-Type":"application/json"
+                },
 
-    const timer = setInterval(() => {
+                body:JSON.stringify({
 
-        progress += Math.random() * 8;
+                    prompt:prompt,
 
-        if (progress >= 100) {
+                    settings:settings
 
-            progress = 100;
-            clearInterval(timer);
+                })
 
-        }
+            }
+        );
 
-        bar.style.width = progress + "%";
 
-    }, 300);
+        const data = await response.json();
 
-}
 
-// -------------------------------
-// Image Preview
-// -------------------------------
+        return data;
 
-function previewImages(inputId, previewId) {
 
-    const input = document.getElementById(inputId);
-    const preview = document.getElementById(previewId);
+    }
 
-    if (!input || !preview) return;
+    catch(error){
 
-    preview.innerHTML = "";
+        console.error(
+            "Video generation error:",
+            error
+        );
 
-    Array.from(input.files).forEach(file => {
 
-        const reader = new FileReader();
+        return {
 
-        reader.onload = function(e){
+            status:"error",
 
-            const img = document.createElement("img");
-
-            img.src = e.target.result;
-
-            img.style.width = "180px";
-            img.style.margin = "10px";
-            img.style.borderRadius = "12px";
-
-            preview.appendChild(img);
+            message:"Could not connect to server"
 
         };
 
-        reader.readAsDataURL(file);
-
-    });
-
-}
-
-// -------------------------------
-// Video Preview
-// -------------------------------
-
-function previewVideo(inputId, videoId){
-
-    const input = document.getElementById(inputId);
-    const video = document.getElementById(videoId);
-
-    if(!input || !video) return;
-
-    const file = input.files[0];
-
-    if(file){
-
-        video.src = URL.createObjectURL(file);
-
-        video.style.display = "block";
-
     }
 
 }
 
-// -------------------------------
-// Save Prompt History
-// -------------------------------
 
-function savePrompt(prompt){
 
-    let history =
-        JSON.parse(localStorage.getItem("promptHistory")) || [];
+// Enhance Prompt
 
-    history.unshift(prompt);
+async function enhancePrompt(prompt){
 
-    history = history.slice(0,20);
 
-    localStorage.setItem(
-        "promptHistory",
-        JSON.stringify(history)
-    );
+    const response = await fetch(
 
-}
+        API.getURL(API.ENHANCE_PROMPT),
 
-// -------------------------------
-// Load Prompt History
-// -------------------------------
+        {
 
-function loadPromptHistory(){
+            method:"POST",
 
-    return JSON.parse(
-        localStorage.getItem("promptHistory")
-    ) || [];
+            headers:{
 
-}
+                "Content-Type":"application/json"
 
-// -------------------------------
-// Fake AI Generation
-// -------------------------------
+            },
 
-function generateVideo(){
+            body:JSON.stringify({
 
-    const prompt =
-        document.getElementById("prompt");
+                prompt:prompt
 
-    if(prompt){
-
-        if(prompt.value.trim()===""){
-
-            alert("Please enter a prompt.");
-
-            return;
+            })
 
         }
 
-        savePrompt(prompt.value);
+    );
 
-    }
 
-    startProgress();
+    return await response.json();
 
-    setTimeout(()=>{
-
-        alert("Later this will call your backend AI.");
-
-    },4000);
 
 }
 
-// -------------------------------
-// Dark Mode
-// -------------------------------
 
-function toggleDarkMode(){
 
-    document.body.classList.toggle("light");
+
+// Image To Video
+
+async function imageToVideo(image, settings){
+
+
+    const response = await fetch(
+
+        API.getURL(API.IMAGE_TO_VIDEO),
+
+        {
+
+            method:"POST",
+
+            body:image
+
+        }
+
+    );
+
+
+    return await response.json();
+
 
 }
 
-// -------------------------------
-// Notification
-// -------------------------------
 
-function notify(message){
 
-    alert(message);
+
+// Voice Generation
+
+async function generateVoice(text, voice){
+
+
+    const response = await fetch(
+
+        API.getURL(API.VOICE),
+
+        {
+
+            method:"POST",
+
+            headers:{
+
+                "Content-Type":"application/json"
+
+            },
+
+            body:JSON.stringify({
+
+                text:text,
+
+                voice:voice
+
+            })
+
+        }
+
+    );
+
+
+    return await response.json();
+
 
 }
+
+
+
+
+// Export functions
+
+window.AIStudio = {
+
+    generateVideo,
+
+    enhancePrompt,
+
+    imageToVideo,
+
+    generateVoice
+
+};
