@@ -10,6 +10,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+
 <style>
 
 *{
@@ -19,22 +20,24 @@ box-sizing:border-box;
 font-family:Poppins,sans-serif;
 }
 
+
 body{
 
+height:100vh;
 background:#080B14;
 color:white;
+
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
 
 }
 
 
 .box{
 
-background:#111827;
 width:400px;
+background:#111827;
 padding:35px;
 border-radius:25px;
 
@@ -67,9 +70,7 @@ padding:15px;
 margin-top:15px;
 
 background:#1F2937;
-
 border:none;
-
 border-radius:12px;
 
 color:white;
@@ -80,7 +81,6 @@ color:white;
 button{
 
 width:100%;
-
 padding:16px;
 
 margin-top:25px;
@@ -91,9 +91,9 @@ border:none;
 
 border-radius:12px;
 
-font-weight:bold;
-
 font-size:17px;
+
+font-weight:bold;
 
 cursor:pointer;
 
@@ -111,12 +111,14 @@ a{
 
 display:block;
 text-align:center;
+
 margin-top:20px;
+
 color:#00D4FF;
+
 text-decoration:none;
 
 }
-
 
 </style>
 
@@ -136,28 +138,25 @@ text-decoration:none;
 </div>
 
 
-<h1>
-
-Create Account
-
-</h1>
+<h1>Create Account</h1>
 
 
 
 <input id="username" placeholder="Username">
 
 
-<input id="email" placeholder="Email">
+<input id="email" type="email" placeholder="Email">
 
 
-<input id="pin" type="password" placeholder="Create PIN">
+<input id="pin" type="password" placeholder="Create PIN (4 digits)">
+
 
 
 <input id="confirmPin" type="password" placeholder="Confirm PIN">
 
 
 
-<button onclick="signup()">
+<button onclick="createAccount()">
 
 Create Account
 
@@ -167,7 +166,7 @@ Create Account
 
 <a href="signin.html">
 
-Already have an account? Login
+Already have account? Sign in
 
 </a>
 
@@ -180,32 +179,22 @@ Already have an account? Login
 <script>
 
 
-function signup(){
+function createAccount(){
 
 
-let username=document.getElementById("username").value;
+let username=document.getElementById("username").value.trim();
 
-let email=document.getElementById("email").value;
+let email=document.getElementById("email").value.trim();
 
-let pin=document.getElementById("pin").value;
+let pin=document.getElementById("pin").value.trim();
 
-let confirm=document.getElementById("confirmPin").value;
+let confirmPin=document.getElementById("confirmPin").value.trim();
 
 
 
 if(username=="" || email=="" || pin==""){
 
 alert("Please fill all fields!");
-
-return;
-
-}
-
-
-
-if(pin!==confirm){
-
-alert("PIN does not match!");
 
 return;
 
@@ -223,6 +212,16 @@ return;
 
 
 
+if(pin!==confirmPin){
+
+alert("PIN does not match!");
+
+return;
+
+}
+
+
+
 localStorage.setItem("username",username);
 
 localStorage.setItem("email",email);
@@ -233,10 +232,13 @@ localStorage.setItem("pin",pin);
 
 alert("Account created successfully!");
 
+
+
 window.location="signin.html";
 
 
 }
+
 
 
 </script>
