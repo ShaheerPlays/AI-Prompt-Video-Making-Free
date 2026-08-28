@@ -1,5 +1,4 @@
 import os
-
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -10,17 +9,11 @@ from fastapi.staticfiles import StaticFiles
 from api.generate import router as generate_router
 
 
-# ---------------------------------------------------------
-# Environment
-# ---------------------------------------------------------
-
+# Load environment variables
 load_dotenv()
 
 
-# ---------------------------------------------------------
-# App
-# ---------------------------------------------------------
-
+# Create FastAPI app
 app = FastAPI(
     title="AI Studio Backend",
     description="AI Studio video generation backend",
@@ -28,10 +21,7 @@ app = FastAPI(
 )
 
 
-# ---------------------------------------------------------
-# CORS
-# ---------------------------------------------------------
-
+# Allow the frontend to communicate with the backend
 frontend_url = os.getenv(
     "FRONTEND_URL",
     "*"
@@ -39,9 +29,11 @@ frontend_url = os.getenv(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        frontend_url
-    ] if frontend_url != "*" else ["*"],
+    allow_origins=(
+        [frontend_url]
+        if frontend_url != "*"
+        else ["*"]
+    ),
     allow_credentials=(
         frontend_url != "*"
     ),
@@ -50,10 +42,7 @@ app.add_middleware(
 )
 
 
-# ---------------------------------------------------------
-# Generated video directory
-# ---------------------------------------------------------
-
+# Generated videos folder
 VIDEO_DIR = Path(
     os.getenv(
         "VIDEO_OUTPUT_DIR",
@@ -67,6 +56,7 @@ VIDEO_DIR.mkdir(
 )
 
 
+# Make generated videos accessible
 app.mount(
     "/generated-videos",
     StaticFiles(
@@ -76,22 +66,15 @@ app.mount(
 )
 
 
-# ---------------------------------------------------------
-# API routes
-# ---------------------------------------------------------
-
+# Add video-generation API
 app.include_router(
     generate_router
 )
 
 
-# ---------------------------------------------------------
-# Health check
-# ---------------------------------------------------------
-
+# Home/health check
 @app.get("/")
 async def root():
-
     return {
         "name": "AI Studio Backend",
         "status": "running",
@@ -101,7 +84,6 @@ async def root():
 
 @app.get("/health")
 async def health():
-
     return {
         "status": "ok"
     }
