@@ -1,307 +1,410 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Generate AI Video | AI Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
 }
 
-body{
-
-background:#070B14;
-
-color:white;
-
-overflow-x:hidden;
-
+body {
+    background:
+        radial-gradient(circle at 20% 10%, rgba(0,212,255,.08), transparent 30%),
+        radial-gradient(circle at 80% 50%, rgba(124,58,237,.08), transparent 35%),
+        #070B14;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-header{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:20px 40px;
-
-background:#111827;
-
-border-bottom:1px solid rgba(255,255,255,.08);
-
-position:sticky;
-
-top:0;
-
-z-index:100;
-
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    background: rgba(17,24,39,.95);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
 }
 
-.logo{
-
-font-size:32px;
-
-font-weight:bold;
-
-color:#00D4FF;
-
+.logo {
+    font-size: 30px;
+    font-weight: 700;
+    color: #00D4FF;
 }
 
-nav{
-
-display:flex;
-
-gap:15px;
-
+nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
-nav a{
-
-color:white;
-
-text-decoration:none;
-
-padding:10px 18px;
-
-border-radius:10px;
-
-transition:.3s;
-
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 9px 15px;
+    border-radius: 10px;
+    transition: .25s;
+    font-size: 14px;
 }
 
-nav a:hover{
-
-background:#00D4FF;
-
-color:black;
-
+nav a:hover,
+nav a.active {
+    background: #00D4FF;
+    color: #020617;
 }
 
-.container{
-
-max-width:1400px;
-
-margin:auto;
-
-padding:40px;
-
+.container {
+    max-width: 1450px;
+    margin: auto;
+    padding: 42px;
 }
 
-.title{
-
-font-size:45px;
-
-font-weight:bold;
-
-margin-bottom:10px;
-
+.title {
+    font-size: 44px;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
-.subtitle{
-
-color:#bfc8d8;
-
-margin-bottom:35px;
-
+.subtitle {
+    color: #aeb9cc;
+    margin-bottom: 30px;
 }
 
-.grid{
-
-display:grid;
-
-grid-template-columns:2fr 1fr;
-
-gap:30px;
-
+.grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+    gap: 28px;
 }
 
-.left{
-
-background:#111827;
-
-padding:25px;
-
-border-radius:20px;
-
+.left,
+.right {
+    background: rgba(17,24,39,.94);
+    border: 1px solid rgba(255,255,255,.06);
+    padding: 25px;
+    border-radius: 22px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.2);
 }
 
-.right{
-
-background:#111827;
-
-padding:25px;
-
-border-radius:20px;
-
+label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-weight: 600;
 }
 
-label{
-
-display:block;
-
-margin-top:18px;
-
-margin-bottom:8px;
-
-font-weight:600;
-
+textarea {
+    width: 100%;
+    min-height: 220px;
+    padding: 18px;
+    background: #1F2937;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    color: white;
+    resize: vertical;
+    font-size: 15px;
+    outline: none;
+    line-height: 1.6;
+    transition: .25s;
 }
 
-textarea{
-
-width:100%;
-
-height:220px;
-
-padding:18px;
-
-background:#1F2937;
-
-border:none;
-
-border-radius:15px;
-
-color:white;
-
-resize:none;
-
-font-size:15px;
-
-outline:none;
-
+textarea:focus {
+    border-color: #00D4FF;
+    box-shadow: 0 0 0 3px rgba(0,212,255,.08);
 }
 
-textarea::placeholder{
-
-color:#94a3b8;
-
+textarea::placeholder {
+    color: #8190a8;
 }
 
-select,input{
-
-width:100%;
-
-padding:15px;
-
-margin-top:8px;
-
-background:#1F2937;
-
-border:none;
-
-border-radius:12px;
-
-color:white;
-
-font-size:15px;
-
+select,
+input[type="file"] {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+    background: #1F2937;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: white;
+    font-size: 14px;
+    outline: none;
 }
 
-button{
-
-width:100%;
-
-padding:18px;
-
-margin-top:20px;
-
-border:none;
-
-border-radius:15px;
-
-background:#00D4FF;
-
-color:black;
-
-font-size:18px;
-
-font-weight:bold;
-
-cursor:pointer;
-
-transition:.3s;
-
+select:focus {
+    border-color: #00D4FF;
 }
 
-button:hover{
-
-transform:translateY(-3px);
-
+button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(90deg,#00D4FF,#38bdf8);
+    color: #001018;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s;
 }
 
-.option{
-
-margin-top:20px;
-
-padding:18px;
-
-background:#1F2937;
-
-border-radius:15px;
-
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,212,255,.18);
 }
 
-.preview{
-
-margin-top:25px;
-
-height:250px;
-
-background:#1F2937;
-
-border-radius:15px;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-font-size:22px;
-
-color:#7dd3fc;
-
+button:active:not(:disabled) {
+    transform: translateY(0);
 }
 
-.progress{
-
-margin-top:25px;
-
-height:16px;
-
-background:#333;
-
-border-radius:20px;
-
-overflow:hidden;
-
+button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
 }
 
-.progress-bar{
+.enhance-button {
+    background: linear-gradient(90deg,#8b5cf6,#c084fc);
+    color: white;
+}
 
-width:0%;
+.option {
+    margin-top: 20px;
+    padding: 18px;
+    background: #1F2937;
+    border: 1px solid rgba(255,255,255,.04);
+    border-radius: 16px;
+}
 
-height:100%;
+.option h3 {
+    margin-bottom: 5px;
+}
 
-background:linear-gradient(90deg,#00D4FF,#7C3AED);
+.option p {
+    color: #aeb9cc;
+    font-size: 13px;
+    line-height: 1.6;
+}
 
-transition:.3s;
+.option label {
+    margin-top: 12px;
+}
 
+.preview {
+    margin-top: 22px;
+    min-height: 290px;
+    background:
+        radial-gradient(circle at center, rgba(0,212,255,.1), transparent 45%),
+        #020617;
+    border-radius: 17px;
+    border: 1px solid rgba(255,255,255,.07);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.preview-content {
+    padding: 30px;
+}
+
+.preview-icon {
+    font-size: 58px;
+    margin-bottom: 12px;
+}
+
+.preview-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.preview-subtitle {
+    color: #8190a8;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+.demo-video {
+    width: 100%;
+    min-height: 290px;
+    object-fit: cover;
+    display: block;
+}
+
+.demo-scene {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            #020617,
+            #172554,
+            #111827,
+            #3b0764
+        );
+}
+
+.demo-orb {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, white, #38bdf8 20%, #2563eb 55%, #1e1b4b 75%);
+    box-shadow: 0 0 70px rgba(56,189,248,.65);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    animation: floatOrb 4s ease-in-out infinite;
+}
+
+.demo-grid {
+    position: absolute;
+    inset: 55% -20% -20%;
+    background:
+        linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+    background-size: 35px 35px;
+    transform: perspective(250px) rotateX(55deg);
+}
+
+.demo-label {
+    position: absolute;
+    left: 20px;
+    bottom: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(0,0,0,.5);
+    padding: 8px 12px;
+    border-radius: 8px;
+    backdrop-filter: blur(8px);
+}
+
+@keyframes floatOrb {
+    0%,100% {
+        transform: translate(-50%,-50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%,-60%) scale(1.08);
+    }
+}
+
+.progress {
+    margin-top: 22px;
+    height: 14px;
+    background: #0b1220;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.05);
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg,#00D4FF,#7C3AED);
+    transition: width .25s ease;
+    border-radius: 20px;
+}
+
+.progress-text {
+    margin-top: 8px;
+    color: #8190a8;
+    font-size: 12px;
+    text-align: right;
+}
+
+.status-success {
+    color: #4ade80 !important;
+}
+
+.status-error {
+    color: #f87171 !important;
+}
+
+.status-working {
+    color: #7dd3fc !important;
+}
+
+.status-idle {
+    color: #aeb9cc !important;
+}
+
+.download-button {
+    background: linear-gradient(90deg,#22c55e,#4ade80);
+    color: #03120a;
+}
+
+.small-note {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #718096;
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+
+    header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    .container {
+        padding: 22px 16px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .logo {
+        font-size: 25px;
+    }
+
+    nav a {
+        padding: 7px 9px;
+        font-size: 12px;
+    }
+
+    .left,
+    .right {
+        padding: 18px;
+    }
+
+    .title {
+        font-size: 27px;
+    }
 }
 
 </style>
@@ -313,20 +416,26 @@ transition:.3s;
 <header>
 
 <div class="logo">
-
 AI Studio
-
 </div>
 
 <nav>
 
-<a href="dashboard.html">Dashboard</a>
+<a href="dashboard.html">
+Dashboard
+</a>
 
-<a href="projects.html">Projects</a>
+<a href="projects.html">
+Projects
+</a>
 
-<a href="settings.html">Settings</a>
+<a href="settings.html">
+Settings
+</a>
 
-<a href="profile.html">Profile</a>
+<a href="profile.html">
+Profile
+</a>
 
 </nav>
 
@@ -335,128 +444,206 @@ AI Studio
 <div class="container">
 
 <h1 class="title">
-
 🎥 AI Video Generator
-
 </h1>
 
 <p class="subtitle">
-
-Generate professional AI videos using text prompts or images.
-
+Create cinematic video concepts from simple text prompts — no API key required.
 </p>
 
 <div class="grid">
 
+<!-- =====================================================
+     LEFT PANEL
+===================================================== -->
+
 <div class="left">
 
-<label>Describe your video</label>
+<label>
+Describe your video
+</label>
 
 <textarea
-id="prompt"
-placeholder="Example: A cinematic documentary about Venus with realistic space scenes, AI narration, subtitles, and dramatic background music..."></textarea>
+    id="prompt"
+    placeholder="Example: A cinematic documentary about Venus with realistic space scenes, dramatic lighting, smooth camera movement, narration and subtitles..."
+></textarea>
 
-<label>Upload Images (Optional)</label>
+<label>
+Upload Images (Optional)
+</label>
 
 <input
+id="imageUpload"
 type="file"
 accept="image/*"
-multiple>
+multiple
 
-<label>Video Resolution</label>
+>
 
-<select>
+<label>
+Video Resolution
+</label>
 
-<option>720P</option>
+<select id="resolution">
 
-<option selected>1080P</option>
+<option value="720p">
+720P
+</option>
+
+<option value="1080p" selected>
+1080P
+</option>
+
+</select>
+
+<label>
+Video Duration
+</label>
+
+<select id="duration">
+
+<option>
+30 Seconds
+</option>
+
+<option>
+1 Minute
+</option>
+
+<option>
+5 Minutes
+</option>
+
+<option>
+10 Minutes
+</option>
+
+<option>
+20 Minutes
+</option>
+
+<option>
+30 Minutes
+</option>
 
 </select>
 
-<label>Video Duration</label>
-
-<select>
-
-<option>30 Seconds</option>
-
-<option>1 Minute</option>
-
-<option>5 Minutes</option>
-
-<option>10 Minutes</option>
-
-<option>20 Minutes</option>
-
-<option>30 Minutes</option>
-
-</select>
-<label>AI Voice</label>
+<label>
+AI Voice
+</label>
 
 <select id="voice">
 
-<option>Male - English</option>
+<option>
+Male - English
+</option>
 
-<option>Female - English</option>
+<option>
+Female - English
+</option>
 
-<option>Male - Urdu</option>
+<option>
+Male - Urdu
+</option>
 
-<option>Female - Urdu</option>
+<option>
+Female - Urdu
+</option>
 
-<option>Male - Hindi</option>
+<option>
+Male - Hindi
+</option>
 
-<option>Female - Hindi</option>
+<option>
+Female - Hindi
+</option>
 
 </select>
 
-<label>Language</label>
+<label>
+Language
+</label>
 
 <select id="language">
 
-<option>English</option>
+<option>
+English
+</option>
 
-<option>Urdu</option>
+<option>
+Urdu
+</option>
 
-<option>Hindi</option>
+<option>
+Hindi
+</option>
 
-<option>Arabic</option>
+<option>
+Arabic
+</option>
 
-<option>Spanish</option>
+<option>
+Spanish
+</option>
 
-<option>French</option>
+<option>
+French
+</option>
 
 </select>
 
 <div class="option">
 
-<h3>🤖 Gemini AI</h3>
+<h3>
+🤖 Smart Prompt Enhancer
+</h3>
 
-<p>Improve your prompt before generating the video.</p>
+<p>
+Improve your prompt automatically using built-in AI-style prompt engineering. No API key is required.
+</p>
 
-<button onclick="enhancePrompt()">
+<button
+class="enhance-button"
+id="enhanceButton"
+onclick="enhancePrompt()"
 
-Enhance Prompt
+>
 
-</button>
+✨ Enhance Prompt </button>
 
 </div>
 
 <div class="option">
 
-<h3>🎵 Background Music</h3>
+<h3>
+🎵 Background Music
+</h3>
 
-<select>
+<select id="music">
 
-<option>No Music</option>
+<option>
+No Music
+</option>
 
-<option>Cinematic</option>
+<option>
+Cinematic
+</option>
 
-<option>Documentary</option>
+<option>
+Documentary
+</option>
 
-<option>Adventure</option>
+<option>
+Adventure
+</option>
 
-<option>Technology</option>
+<option>
+Technology
+</option>
 
-<option>Nature</option>
+<option>
+Nature
+</option>
 
 </select>
 
@@ -464,11 +651,18 @@ Enhance Prompt
 
 <div class="option">
 
-<h3>📝 Automatic Subtitles</h3>
+<h3>
+📝 Automatic Subtitles
+</h3>
 
 <label>
 
-<input type="checkbox" checked>
+<input
+id="subtitles"
+type="checkbox"
+checked
+
+>
 
 Enable AI Subtitles
 
@@ -476,53 +670,112 @@ Enable AI Subtitles
 
 </div>
 
-<button onclick="generateVideo()">
+<button
+id="generateButton"
+onclick="generateVideo()"
 
-🚀 Generate AI Video
+>
 
-</button>
+🚀 Generate AI Video </button>
 
 <div class="progress">
 
-<div class="progress-bar" id="progressBar"></div>
+<div
+    class="progress-bar"
+    id="progressBar"
+></div>
 
 </div>
 
+<div
+    class="progress-text"
+    id="progressText"
+>
+0%
 </div>
+
+</div>
+
+<!-- =====================================================
+     RIGHT PANEL
+===================================================== -->
 
 <div class="right">
 
-<h2>Preview</h2>
+<h2>
+Preview
+</h2>
 
-<div class="preview" id="preview">
+<div
+    class="preview"
+    id="preview"
+>
 
+<div class="preview-content">
+
+<div class="preview-icon">
 🎬
+</div>
 
+<div class="preview-title">
 Your AI Video Preview
+</div>
+
+<div class="preview-subtitle">
+Your generated video will appear here.
+</div>
+
+</div>
 
 </div>
 
 <div class="option">
 
-<h3>Generation Status</h3>
+<h3>
+Generation Status
+</h3>
 
-<p id="status">
-
+<p
+    id="status"
+    class="status-idle"
+>
 Waiting for prompt...
-
 </p>
 
 </div>
 
 <div class="option">
 
-<h3>Export</h3>
+<h3>
+📋 Generation Details
+</h3>
 
-<button>
+<p id="details">
+Resolution: 1080P<br>
+Duration: 30 Seconds<br>
+Language: English
+</p>
 
-📥 Download MP4
+</div>
 
-</button>
+<div class="option">
+
+<h3>
+Export
+</h3>
+
+<button
+id="downloadButton"
+class="download-button"
+disabled
+
+>
+
+📥 Download Demo MP4 </button>
+
+<p class="small-note">
+This API-free version creates a browser demo video. Real AI video generation requires a video-generation service/backend.
+</p>
 
 </div>
 
@@ -534,54 +787,994 @@ Waiting for prompt...
 
 <script>
 
-function enhancePrompt(){
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-const prompt=document.getElementById("prompt");
+const promptInput =
+    document.getElementById("prompt");
 
-if(prompt.value===""){
+const enhanceButton =
+    document.getElementById("enhanceButton");
 
-alert("Please enter a prompt first.");
+const generateButton =
+    document.getElementById("generateButton");
 
-return;
+const progressBar =
+    document.getElementById("progressBar");
+
+const progressText =
+    document.getElementById("progressText");
+
+const statusElement =
+    document.getElementById("status");
+
+const preview =
+    document.getElementById("preview");
+
+const downloadButton =
+    document.getElementById("downloadButton");
+
+const resolution =
+    document.getElementById("resolution");
+
+const duration =
+    document.getElementById("duration");
+
+const language =
+    document.getElementById("language");
+
+let demoVideoUrl = null;
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function setStatus(message, type = "idle") {
+
+    statusElement.textContent = message;
+
+    statusElement.className =
+        "status-" + type;
 
 }
 
-prompt.value=
-"Professional cinematic video, high quality, smooth camera movement, realistic lighting, " + prompt.value;
 
-alert("Prompt enhanced!");
+/* =========================================================
+   API-FREE SMART PROMPT ENHANCER
+========================================================= */
+
+function enhancePrompt() {
+
+    const original =
+        promptInput.value.trim();
+
+
+    if (!original) {
+
+        alert(
+            "Please enter a video idea first."
+        );
+
+        promptInput.focus();
+
+        return;
+
+    }
+
+
+    enhanceButton.disabled = true;
+
+    enhanceButton.textContent =
+        "✨ Improving...";
+
+
+    setStatus(
+        "Improving your video prompt...",
+        "working"
+    );
+
+
+    setTimeout(() => {
+
+        const enhanced =
+            buildSmartPrompt(original);
+
+
+        promptInput.value =
+            enhanced;
+
+
+        enhanceButton.disabled =
+            false;
+
+
+        enhanceButton.textContent =
+            "✨ Enhance Prompt";
+
+
+        setStatus(
+            "✅ Prompt enhanced successfully!",
+            "success"
+        );
+
+    }, 900);
 
 }
 
-function generateVideo(){
 
-const bar=document.getElementById("progressBar");
+/* =========================================================
+   SMART PROMPT ENGINE
+========================================================= */
 
-const status=document.getElementById("status");
+function buildSmartPrompt(userPrompt) {
 
-let progress=0;
+    const text =
+        userPrompt.trim();
 
-status.innerHTML="Generating AI Video...";
 
-const timer=setInterval(function(){
+    const lower =
+        text.toLowerCase();
 
-progress+=2;
 
-bar.style.width=progress+"%";
+    let style =
+        "cinematic, polished and visually immersive";
 
-if(progress>=100){
 
-clearInterval(timer);
+    if (
+        lower.includes("documentary") ||
+        lower.includes("history")
+    ) {
 
-status.innerHTML="✅ Video Generated Successfully";
+        style =
+            "cinematic documentary style with realistic environments and authentic visual details";
 
-document.getElementById("preview").innerHTML="🎥 Video Ready";
+    }
+
+    else if (
+        lower.includes("space") ||
+        lower.includes("planet") ||
+        lower.includes("galaxy")
+    ) {
+
+        style =
+            "epic cinematic science-fiction style with realistic space environments and dramatic cosmic lighting";
+
+    }
+
+    else if (
+        lower.includes("nature") ||
+        lower.includes("forest") ||
+        lower.includes("ocean")
+    ) {
+
+        style =
+            "photorealistic nature cinematography with atmospheric lighting and detailed natural environments";
+
+    }
+
+    else if (
+        lower.includes("game") ||
+        lower.includes("gaming")
+    ) {
+
+        style =
+            "high-energy cinematic game trailer style with dynamic movement and dramatic visual effects";
+
+    }
+
+    else if (
+        lower.includes("product") ||
+        lower.includes("technology") ||
+        lower.includes("tech")
+    ) {
+
+        style =
+            "premium commercial style with sleek product cinematography and modern studio lighting";
+
+    }
+
+    else if (
+        lower.includes("horror") ||
+        lower.includes("scary") ||
+        lower.includes("zombie")
+    ) {
+
+        style =
+            "dark cinematic horror style with atmospheric shadows, suspenseful composition and dramatic lighting";
+
+    }
+
+
+    let camera =
+        "smooth camera movement, cinematic framing, natural depth of field";
+
+
+    if (
+        lower.includes("action") ||
+        lower.includes("fight") ||
+        lower.includes("chase")
+    ) {
+
+        camera =
+            "dynamic tracking shots, fast cinematic camera movement, dramatic close-ups and wide action shots";
+
+    }
+
+    else if (
+        lower.includes("landscape") ||
+        lower.includes("mountain") ||
+        lower.includes("city")
+    ) {
+
+        camera =
+            "wide establishing shots, slow cinematic camera movement and detailed environmental composition";
+
+    }
+
+
+    let lighting =
+        "realistic volumetric lighting, natural shadows and carefully balanced highlights";
+
+
+    if (
+        lower.includes("night") ||
+        lower.includes("dark")
+    ) {
+
+        lighting =
+            "moody nighttime lighting, soft practical lights, deep shadows and atmospheric highlights";
+
+    }
+
+    else if (
+        lower.includes("sunset") ||
+        lower.includes("sunrise")
+    ) {
+
+        lighting =
+            "warm golden-hour lighting, long natural shadows and soft atmospheric highlights";
+
+    }
+
+
+    return `${text}
+
+Visual style: ${style}.
+Camera: ${camera}.
+Lighting: ${lighting}.
+Motion: realistic movement, natural physics and smooth transitions.
+Composition: strong cinematic composition with clear subject focus.
+Details: realistic textures, atmospheric depth and high visual detail.
+Overall quality: professional cinematic video suitable for a polished AI video production.`;
 
 }
 
-},100);
+
+/* =========================================================
+   GENERATE SIMULATED VIDEO
+========================================================= */
+
+async function generateVideo() {
+
+    const prompt =
+        promptInput.value.trim();
+
+
+    if (!prompt) {
+
+        alert(
+            "Please enter a video prompt first."
+        );
+
+        promptInput.focus();
+
+        return;
+
+    }
+
+
+    generateButton.disabled =
+        true;
+
+    enhanceButton.disabled =
+        true;
+
+    downloadButton.disabled =
+        true;
+
+
+    if (demoVideoUrl) {
+
+        URL.revokeObjectURL(
+            demoVideoUrl
+        );
+
+        demoVideoUrl = null;
+
+    }
+
+
+    progressBar.style.width =
+        "0%";
+
+    progressText.textContent =
+        "0%";
+
+
+    setStatus(
+        "Preparing your AI video...",
+        "working"
+    );
+
+
+    updateDetails();
+
+
+    preview.innerHTML = `
+        <div class="preview-content">
+            <div class="preview-icon">🧠</div>
+            <div class="preview-title">
+                Analyzing your prompt...
+            </div>
+            <div class="preview-subtitle">
+                Creating your cinematic video concept
+            </div>
+        </div>
+    `;
+
+
+    await sleep(700);
+
+
+    const stages = [
+
+        {
+            percent: 15,
+            message: "Analyzing video prompt..."
+        },
+
+        {
+            percent: 30,
+            message: "Planning scenes..."
+        },
+
+        {
+            percent: 45,
+            message: "Creating visual composition..."
+        },
+
+        {
+            percent: 60,
+            message: "Simulating camera movement..."
+        },
+
+        {
+            percent: 75,
+            message: "Adding cinematic lighting..."
+        },
+
+        {
+            percent: 90,
+            message: "Rendering preview..."
+        },
+
+        {
+            percent: 100,
+            message: "Video generated successfully!"
+        }
+
+    ];
+
+
+    for (
+        const stage of stages
+    ) {
+
+        await sleep(
+            650 + Math.random() * 500
+        );
+
+
+        progressBar.style.width =
+            stage.percent + "%";
+
+
+        progressText.textContent =
+            stage.percent + "%";
+
+
+        setStatus(
+            stage.message,
+            stage.percent === 100
+                ? "success"
+                : "working"
+        );
+
+    }
+
+
+    createDemoPreview();
+
+
+    generateButton.disabled =
+        false;
+
+    enhanceButton.disabled =
+        false;
 
 }
+
+
+/* =========================================================
+   CREATE DEMO PREVIEW
+========================================================= */
+
+function createDemoPreview() {
+
+    const safePrompt =
+        escapeHTML(
+            promptInput.value.substring(
+                0,
+                120
+            )
+        );
+
+
+    preview.innerHTML = `
+
+        <div class="demo-scene">
+
+            <div class="demo-grid"></div>
+
+            <div class="demo-orb"></div>
+
+            <div class="demo-label">
+                🎥 AI Studio Demo • ${safePrompt}
+            </div>
+
+        </div>
+
+    `;
+
+
+    /*
+       Create a tiny valid WebM file when supported.
+       This gives the download button a real browser-generated
+       file rather than pretending that an AI video was generated.
+    */
+
+    createDemoDownload();
+
+}
+
+
+/* =========================================================
+   CREATE DOWNLOADABLE DEMO VIDEO
+========================================================= */
+
+function createDemoDownload() {
+
+    if (
+        !window.MediaRecorder
+    ) {
+
+        downloadButton.disabled =
+            true;
+
+        downloadButton.textContent =
+            "📥 Download unavailable";
+
+        return;
+
+    }
+
+
+    const canvas =
+        document.createElement("canvas");
+
+
+    canvas.width = 1280;
+
+    canvas.height = 720;
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    let frame = 0;
+
+
+    const stream =
+        canvas.captureStream(30);
+
+
+    let recorder;
+
+
+    try {
+
+        recorder =
+            new MediaRecorder(
+                stream,
+                {
+                    mimeType:
+                        "video/webm"
+                }
+            );
+
+    }
+
+    catch (error) {
+
+        try {
+
+            recorder =
+                new MediaRecorder(
+                    stream
+                );
+
+        }
+
+        catch (secondError) {
+
+            downloadButton.disabled =
+                true;
+
+            return;
+
+        }
+
+    }
+
+
+    const chunks = [];
+
+
+    recorder.ondataavailable =
+        event => {
+
+            if (
+                event.data &&
+                event.data.size > 0
+            ) {
+
+                chunks.push(
+                    event.data
+                );
+
+            }
+
+        };
+
+
+    recorder.onstop = () => {
+
+        const blob =
+            new Blob(
+                chunks,
+                {
+                    type:
+                        recorder.mimeType ||
+                        "video/webm"
+                }
+            );
+
+
+        demoVideoUrl =
+            URL.createObjectURL(
+                blob
+            );
+
+
+        downloadButton.disabled =
+            false;
+
+
+        downloadButton.textContent =
+            "📥 Download Demo Video";
+
+
+        downloadButton.onclick =
+            downloadDemoVideo;
+
+    };
+
+
+    recorder.start();
+
+
+    function drawFrame() {
+
+        const w =
+            canvas.width;
+
+        const h =
+            canvas.height;
+
+
+        const time =
+            frame / 30;
+
+
+        const gradient =
+            ctx.createLinearGradient(
+                0,
+                0,
+                w,
+                h
+            );
+
+
+        const hue1 =
+            (210 + frame * 0.25) % 360;
+
+        const hue2 =
+            (270 + frame * 0.35) % 360;
+
+
+        gradient.addColorStop(
+            0,
+            `hsl(${hue1},70%,12%)`
+        );
+
+
+        gradient.addColorStop(
+            .5,
+            `hsl(${hue2},60%,18%)`
+        );
+
+
+        gradient.addColorStop(
+            1,
+            `hsl(${hue1},65%,8%)`
+        );
+
+
+        ctx.fillStyle =
+            gradient;
+
+        ctx.fillRect(
+            0,
+            0,
+            w,
+            h
+        );
+
+
+        /* Grid */
+
+        ctx.strokeStyle =
+            "rgba(255,255,255,.12)";
+
+        ctx.lineWidth = 2;
+
+
+        const offset =
+            (frame * 2) % 60;
+
+
+        for (
+            let x = -100;
+            x < w + 100;
+            x += 60
+        ) {
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+                x + offset,
+                h * .68
+            );
+
+            ctx.lineTo(
+                x + offset - 180,
+                h
+            );
+
+            ctx.stroke();
+
+        }
+
+
+        for (
+            let y = h * .68;
+            y < h;
+            y += 45
+        ) {
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+                0,
+                y
+            );
+
+            ctx.lineTo(
+                w,
+                y
+            );
+
+            ctx.stroke();
+
+        }
+
+
+        /* Glowing orb */
+
+        const cx =
+            w / 2;
+
+        const cy =
+            h / 2 +
+            Math.sin(time * 2) * 25;
+
+
+        const radius =
+            100 +
+            Math.sin(time * 3) * 8;
+
+
+        const orb =
+            ctx.createRadialGradient(
+                cx - 30,
+                cy - 35,
+                10,
+                cx,
+                cy,
+                radius
+            );
+
+
+        orb.addColorStop(
+            0,
+            "white"
+        );
+
+        orb.addColorStop(
+            .15,
+            "#67e8f9"
+        );
+
+        orb.addColorStop(
+            .45,
+            "#2563eb"
+        );
+
+        orb.addColorStop(
+            1,
+            "rgba(37,99,235,0)"
+        );
+
+
+        ctx.fillStyle =
+            orb;
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+            cx,
+            cy,
+            radius * 1.7,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fill();
+
+
+        /* Title */
+
+        ctx.fillStyle =
+            "white";
+
+        ctx.font =
+            "bold 42px Poppins, Arial";
+
+        ctx.textAlign =
+            "center";
+
+        ctx.fillText(
+            "AI STUDIO",
+            cx,
+            90
+        );
+
+
+        ctx.font =
+            "24px Poppins, Arial";
+
+        ctx.fillStyle =
+            "rgba(255,255,255,.75)";
+
+        ctx.fillText(
+            "Cinematic Video Preview",
+            cx,
+            130
+        );
+
+
+        frame++;
+
+
+        if (
+            frame < 150
+        ) {
+
+            requestAnimationFrame(
+                drawFrame
+            );
+
+        }
+
+        else {
+
+            recorder.stop();
+
+        }
+
+    }
+
+
+    drawFrame();
+
+}
+
+
+/* =========================================================
+   DOWNLOAD DEMO
+========================================================= */
+
+function downloadDemoVideo() {
+
+    if (!demoVideoUrl) {
+
+        return;
+
+    }
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href =
+        demoVideoUrl;
+
+
+    link.download =
+        "AI-Studio-Demo-Video.webm";
+
+
+    document.body.appendChild(
+        link
+    );
+
+
+    link.click();
+
+
+    document.body.removeChild(
+        link
+    );
+
+}
+
+
+/* =========================================================
+   UPDATE DETAILS
+========================================================= */
+
+function updateDetails() {
+
+    const voice =
+        document.getElementById(
+            "voice"
+        ).value;
+
+
+    const music =
+        document.getElementById(
+            "music"
+        ).value;
+
+
+    const subtitles =
+        document.getElementById(
+            "subtitles"
+        ).checked;
+
+
+    document.getElementById(
+        "details"
+    ).innerHTML = `
+
+        Resolution:
+        ${resolution.value.toUpperCase()}
+        <br>
+
+        Duration:
+        ${duration.value}
+        <br>
+
+        Language:
+        ${language.value}
+        <br>
+
+        Voice:
+        ${voice}
+        <br>
+
+        Music:
+        ${music}
+        <br>
+
+        Subtitles:
+        ${subtitles ? "Enabled" : "Disabled"}
+
+    `;
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function sleep(ms) {
+
+    return new Promise(
+        resolve =>
+            setTimeout(
+                resolve,
+                ms
+            )
+    );
+
+}
+
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
+   UPDATE DETAILS WHEN OPTIONS CHANGE
+========================================================= */
+
+[
+    resolution,
+    duration,
+    language,
+    document.getElementById("voice"),
+    document.getElementById("music"),
+    document.getElementById("subtitles")
+].forEach(
+    element => {
+
+        element.addEventListener(
+            "change",
+            updateDetails
+        );
+
+    }
+);
+
+
+updateDetails();
+
 
 </script>
 
