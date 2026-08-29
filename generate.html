@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 * {
     margin: 0;
     padding: 0;
@@ -226,152 +224,6 @@ button:disabled {
     margin-top: 7px;
 }
 
-.demo-scene {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-}
-
-.mars-scene {
-    background:
-        radial-gradient(
-            circle at 50% 25%,
-            rgba(255,180,120,.35),
-            transparent 15%
-        ),
-        linear-gradient(
-            180deg,
-            #170b0b 0%,
-            #4a1712 48%,
-            #8f321c 70%,
-            #2b0c08 100%
-        );
-}
-
-.space-scene {
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(100,180,255,.2),
-            transparent 25%
-        ),
-        linear-gradient(
-            180deg,
-            #020617,
-            #111827,
-            #1e1b4b
-        );
-}
-
-.demo-planet {
-    position: absolute;
-    width: 170px;
-    height: 170px;
-    border-radius: 50%;
-    left: 50%;
-    top: 48%;
-    transform: translate(-50%,-50%);
-    box-shadow:
-        inset -35px -25px 50px rgba(0,0,0,.65),
-        0 0 50px rgba(255,100,50,.25);
-}
-
-.mars-planet {
-    background:
-        radial-gradient(
-            circle at 30% 25%,
-            #ffb27b,
-            #c94b2c 35%,
-            #7f2417 68%,
-            #300b08 100%
-        );
-}
-
-.space-planet {
-    background:
-        radial-gradient(
-            circle at 30% 25%,
-            #93c5fd,
-            #2563eb 40%,
-            #172554 72%,
-            #020617 100%
-        );
-}
-
-.stars {
-    position: absolute;
-    inset: 0;
-    background-image:
-        radial-gradient(circle, white 1px, transparent 1px),
-        radial-gradient(circle, rgba(255,255,255,.7) 1px, transparent 1px);
-    background-size: 75px 75px, 115px 115px;
-    background-position: 10px 20px, 40px 60px;
-    opacity: .7;
-}
-
-.mars-ground {
-    position: absolute;
-    left: -10%;
-    right: -10%;
-    bottom: -25%;
-    height: 55%;
-    background:
-        radial-gradient(
-            ellipse at center,
-            #bd5129,
-            #762413 55%,
-            #260805 100%
-        );
-    border-radius: 50% 50% 0 0;
-    transform: rotate(-3deg);
-}
-
-.mars-rock {
-    position: absolute;
-    bottom: 22%;
-    width: 75px;
-    height: 42px;
-    background: #572015;
-    border-radius: 60% 40% 30% 30%;
-    box-shadow: inset -15px -10px 15px rgba(0,0,0,.35);
-}
-
-.rock1 {
-    left: 15%;
-}
-
-.rock2 {
-    right: 15%;
-    transform: scale(.7);
-}
-
-.demo-text {
-    position: absolute;
-    left: 18px;
-    bottom: 16px;
-    right: 18px;
-    text-align: left;
-    font-size: 13px;
-    background: rgba(0,0,0,.55);
-    padding: 9px 12px;
-    border-radius: 9px;
-    backdrop-filter: blur(8px);
-}
-
-@keyframes planetMove {
-    0%,100% {
-        transform: translate(-50%,-50%) scale(1);
-    }
-
-    50% {
-        transform: translate(-50%,-54%) scale(1.06);
-    }
-}
-
-.demo-planet {
-    animation: planetMove 4s ease-in-out infinite;
-}
-
 .progress {
     margin-top: 22px;
     height: 14px;
@@ -422,6 +274,35 @@ button:disabled {
     line-height: 1.5;
 }
 
+.video-container {
+    width: 100%;
+    padding: 10px;
+}
+
+.video-container video {
+    width: 100%;
+    max-height: 600px;
+    border-radius: 15px;
+    background: #000;
+    display: block;
+}
+
+.connection {
+    margin-top: 15px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.04);
+    font-size: 12px;
+}
+
+.connection-online {
+    color: #4ade80;
+}
+
+.connection-offline {
+    color: #f87171;
+}
+
 @media (max-width: 900px) {
 
     header {
@@ -446,7 +327,6 @@ button:disabled {
         justify-content: center;
     }
 }
-
 </style>
 
 </head>
@@ -455,287 +335,386 @@ button:disabled {
 
 <header>
 
+```
 <div class="logo">
-AI Studio
+    AI Studio
 </div>
 
 <nav>
-
-<a href="dashboard.html">Dashboard</a> <a href="projects.html">Projects</a> <a href="settings.html">Settings</a> <a href="profile.html">Profile</a>
-
+    <a href="dashboard.html">Dashboard</a>
+    <a href="projects.html">Projects</a>
+    <a href="settings.html">Settings</a>
+    <a href="profile.html">Profile</a>
 </nav>
+```
 
 </header>
 
 <div class="container">
 
+```
 <h1 class="title">
-🎥 AI Video Generator
+    🎥 AI Video Generator
 </h1>
 
 <p class="subtitle">
-Create cinematic video concepts directly in your browser — no API key required.
+    Turn your ideas into AI-generated videos.
 </p>
+
 
 <div class="grid">
 
-<div class="left">
+    <!-- LEFT SIDE -->
 
-<label>
-Describe your video
-</label>
+    <div class="left">
 
-<textarea
-    id="prompt"
-    placeholder="Example: A cinematic journey across Mars with a futuristic rover, giant red mountains, dust storms and dramatic sunlight..."
-></textarea>
+        <label>
+            Describe your video
+        </label>
 
-<label>
-Upload Images (Optional)
-</label>
+        <textarea
+            id="prompt"
+            placeholder="Example: A cinematic journey across Mars with a futuristic rover, giant red mountains, dust storms and dramatic sunlight..."
+        ></textarea>
 
-<input
-id="imageUpload"
-type="file"
-accept="image/*"
-multiple
 
->
+        <label>
+            Upload Images (Optional)
+        </label>
 
-<label>
-Video Resolution
-</label>
+        <input
+            id="imageUpload"
+            type="file"
+            accept="image/*"
+            multiple
+        >
 
-<select id="resolution">
 
-<option value="720p">
-720P
-</option>
+        <label>
+            Video Resolution
+        </label>
 
-<option value="1080p" selected>
-1080P
-</option>
+        <select id="resolution">
 
-</select>
+            <option value="720p">
+                720P
+            </option>
 
-<label>
-Video Duration
-</label>
+            <option value="1080p" selected>
+                1080P
+            </option>
 
-<select id="duration">
+        </select>
 
-<option>30 Seconds</option>
-<option>1 Minute</option>
-<option>5 Minutes</option>
-<option>10 Minutes</option>
-<option>20 Minutes</option>
-<option>30 Minutes</option>
 
-</select>
+        <label>
+            Video Duration
+        </label>
 
-<label>
-AI Voice
-</label>
+        <select id="duration">
 
-<select id="voice">
+            <option value="30 Seconds">
+                30 Seconds
+            </option>
 
-<option>Male - English</option>
-<option>Female - English</option>
-<option>Male - Urdu</option>
-<option>Female - Urdu</option>
-<option>Male - Hindi</option>
-<option>Female - Hindi</option>
+            <option value="1 Minute">
+                1 Minute
+            </option>
 
-</select>
+            <option value="5 Minutes">
+                5 Minutes
+            </option>
 
-<label>
-Language
-</label>
+            <option value="10 Minutes">
+                10 Minutes
+            </option>
 
-<select id="language">
+            <option value="20 Minutes">
+                20 Minutes
+            </option>
 
-<option>English</option>
-<option>Urdu</option>
-<option>Hindi</option>
-<option>Arabic</option>
-<option>Spanish</option>
-<option>French</option>
+            <option value="30 Minutes">
+                30 Minutes
+            </option>
 
-</select>
+        </select>
 
-<div class="option">
 
-<h3>
-🤖 Smart Prompt Enhancer
-</h3>
+        <label>
+            AI Voice
+        </label>
 
-<p>
-Improve your prompt automatically. This works without Gemini or any API key.
-</p>
+        <select id="voice">
 
-<button
-class="enhance-button"
-id="enhanceButton"
-onclick="enhancePrompt()"
+            <option>Male - English</option>
+            <option>Female - English</option>
+            <option>Male - Urdu</option>
+            <option>Female - Urdu</option>
+            <option>Male - Hindi</option>
+            <option>Female - Hindi</option>
 
->
+        </select>
 
-✨ Enhance Prompt </button>
+
+        <label>
+            Language
+        </label>
+
+        <select id="language">
+
+            <option>English</option>
+            <option>Urdu</option>
+            <option>Hindi</option>
+            <option>Arabic</option>
+            <option>Spanish</option>
+            <option>French</option>
+
+        </select>
+
+
+        <!-- PROMPT ENHANCER -->
+
+        <div class="option">
+
+            <h3>
+                🤖 Smart Prompt Enhancer
+            </h3>
+
+            <p>
+                Improve your prompt automatically before sending it to the AI.
+            </p>
+
+            <button
+                class="enhance-button"
+                id="enhanceButton"
+                onclick="enhancePrompt()"
+            >
+                ✨ Enhance Prompt
+            </button>
+
+        </div>
+
+
+        <!-- MUSIC -->
+
+        <div class="option">
+
+            <h3>
+                🎵 Background Music
+            </h3>
+
+            <select id="music">
+
+                <option>
+                    No Music
+                </option>
+
+                <option>
+                    Cinematic
+                </option>
+
+                <option>
+                    Documentary
+                </option>
+
+                <option>
+                    Adventure
+                </option>
+
+                <option>
+                    Technology
+                </option>
+
+                <option>
+                    Nature
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- SUBTITLES -->
+
+        <div class="option">
+
+            <h3>
+                📝 Automatic Subtitles
+            </h3>
+
+            <label>
+
+                <input
+                    id="subtitles"
+                    type="checkbox"
+                    checked
+                >
+
+                Enable AI Subtitles
+
+            </label>
+
+        </div>
+
+
+        <!-- GENERATE -->
+
+        <button
+            id="generateButton"
+            onclick="generateVideo()"
+        >
+            🚀 Generate AI Video
+        </button>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress">
+
+            <div
+                class="progress-bar"
+                id="progressBar"
+            ></div>
+
+        </div>
+
+
+        <div
+            class="progress-text"
+            id="progressText"
+        >
+            0%
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+
+    <div class="right">
+
+        <h2>
+            Preview
+        </h2>
+
+
+        <div
+            class="preview"
+            id="preview"
+        >
+
+            <div class="preview-content">
+
+                <div class="preview-icon">
+                    🎬
+                </div>
+
+                <div class="preview-title">
+                    Your AI Video Preview
+                </div>
+
+                <div class="preview-subtitle">
+                    Your generated video will appear here.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="option">
+
+            <h3>
+                Generation Status
+            </h3>
+
+            <p
+                id="status"
+                class="status-idle"
+            >
+                Waiting for prompt...
+            </p>
+
+        </div>
+
+
+        <!-- CONNECTION -->
+
+        <div class="option">
+
+            <h3>
+                ⚙️ Backend
+            </h3>
+
+            <div
+                id="connection"
+                class="connection"
+            >
+                Checking backend connection...
+            </div>
+
+        </div>
+
+
+        <!-- DETAILS -->
+
+        <div class="option">
+
+            <h3>
+                📋 Generation Details
+            </h3>
+
+            <p id="details">
+                Resolution: 1080P<br>
+                Duration: 30 Seconds<br>
+                Language: English<br>
+                Voice: Male - English<br>
+                Music: No Music<br>
+                Subtitles: Enabled
+            </p>
+
+        </div>
+
+
+        <!-- DOWNLOAD -->
+
+        <div class="option">
+
+            <h3>
+                Export
+            </h3>
+
+            <button
+                id="downloadButton"
+                class="download-button"
+                disabled
+            >
+                📥 Download AI Video
+            </button>
+
+            <p class="note">
+                Videos are generated through your connected backend.
+            </p>
+
+        </div>
+
+    </div>
 
 </div>
-
-<div class="option">
-
-<h3>
-🎵 Background Music
-</h3>
-
-<select id="music">
-
-<option>No Music</option>
-<option>Cinematic</option>
-<option>Documentary</option>
-<option>Adventure</option>
-<option>Technology</option>
-<option>Nature</option>
-
-</select>
-
-</div>
-
-<div class="option">
-
-<h3>
-📝 Automatic Subtitles
-</h3>
-
-<label>
-
-<input
-id="subtitles"
-type="checkbox"
-checked
-
->
-
-Enable AI Subtitles
-
-</label>
-
-</div>
-
-<button
-id="generateButton"
-onclick="generateVideo()"
-
->
-
-🚀 Generate AI Video </button>
-
-<div class="progress">
-
-<div
-    class="progress-bar"
-    id="progressBar"
-></div>
-
-</div>
-
-<div
-    class="progress-text"
-    id="progressText"
->
-0%
-</div>
-
-</div>
-
-<div class="right">
-
-<h2>
-Preview
-</h2>
-
-<div
-    class="preview"
-    id="preview"
->
-
-<div class="preview-content">
-
-<div class="preview-icon">
-🎬
-</div>
-
-<div class="preview-title">
-Your AI Video Preview
-</div>
-
-<div class="preview-subtitle">
-Your video preview will appear here.
-</div>
-
-</div>
-
-</div>
-
-<div class="option">
-
-<h3>
-Generation Status
-</h3>
-
-<p
-    id="status"
-    class="status-idle"
->
-Waiting for prompt...
-</p>
-
-</div>
-
-<div class="option">
-
-<h3>
-📋 Generation Details
-</h3>
-
-<p id="details">
-Resolution: 1080P<br>
-Duration: 30 Seconds<br>
-Language: English
-</p>
-
-</div>
-
-<div class="option">
-
-<h3>
-Export
-</h3>
-
-<button
-id="downloadButton"
-class="download-button"
-disabled
-
->
-
-📥 Download Demo Video </button>
-
-<p class="note">
-This is an API-free browser demo. It does not call Gemini, Veo, or another cloud AI service.
-</p>
-
-</div>
-
-</div>
-
-</div>
+```
 
 </div>
 
 <script>
+
+/* =========================================================
+   BACKEND
+========================================================= */
+
+const BACKEND_URL = "http://localhost:8000";
+
 
 /* =========================================================
    ELEMENTS
@@ -783,20 +762,19 @@ const music =
 const subtitles =
     document.getElementById("subtitles");
 
-let demoVideoUrl = null;
+const connection =
+    document.getElementById("connection");
+
+let currentVideoUrl = null;
 
 
 /* =========================================================
    STATUS
 ========================================================= */
 
-function setStatus(
-    message,
-    type = "idle"
-) {
+function setStatus(message, type = "idle") {
 
-    statusElement.textContent =
-        message;
+    statusElement.textContent = message;
 
     statusElement.className =
         "status-" + type;
@@ -805,14 +783,54 @@ function setStatus(
 
 
 /* =========================================================
-   API-FREE PROMPT ENHANCER
+   BACKEND CONNECTION CHECK
+========================================================= */
+
+async function checkBackend() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${BACKEND_URL}/health`,
+                {
+                    method: "GET"
+                }
+            );
+
+        if (!response.ok) {
+            throw new Error("Backend unavailable");
+        }
+
+        connection.textContent =
+            "🟢 Backend connected";
+
+        connection.className =
+            "connection connection-online";
+
+    }
+
+    catch (error) {
+
+        connection.textContent =
+            "🔴 Backend not connected — start FastAPI on localhost:8000";
+
+        connection.className =
+            "connection connection-offline";
+
+    }
+
+}
+
+
+/* =========================================================
+   PROMPT ENHANCER
 ========================================================= */
 
 function enhancePrompt() {
 
     const original =
         promptInput.value.trim();
-
 
     if (!original) {
 
@@ -823,9 +841,7 @@ function enhancePrompt() {
         promptInput.focus();
 
         return;
-
     }
-
 
     enhanceButton.disabled =
         true;
@@ -833,37 +849,29 @@ function enhancePrompt() {
     enhanceButton.textContent =
         "✨ Improving...";
 
-
     setStatus(
         "Improving your prompt...",
         "working"
     );
 
 
-    setTimeout(
-        () => {
+    setTimeout(() => {
 
-            promptInput.value =
-                buildSmartPrompt(
-                    original
-                );
+        promptInput.value =
+            buildSmartPrompt(original);
 
+        enhanceButton.disabled =
+            false;
 
-            enhanceButton.disabled =
-                false;
+        enhanceButton.textContent =
+            "✨ Enhance Prompt";
 
-            enhanceButton.textContent =
-                "✨ Enhance Prompt";
+        setStatus(
+            "✅ Prompt enhanced successfully!",
+            "success"
+        );
 
-
-            setStatus(
-                "✅ Prompt enhanced successfully!",
-                "success"
-            );
-
-        },
-        700
-    );
+    }, 500);
 
 }
 
@@ -872,9 +880,7 @@ function enhancePrompt() {
    SMART PROMPT ENGINE
 ========================================================= */
 
-function buildSmartPrompt(
-    original
-) {
+function buildSmartPrompt(original) {
 
     const text =
         original.trim();
@@ -886,24 +892,18 @@ function buildSmartPrompt(
     let style =
         "cinematic and highly immersive";
 
-
     let camera =
         "smooth cinematic camera movement with wide establishing shots and detailed close-ups";
-
 
     let lighting =
         "realistic lighting, natural shadows and atmospheric depth";
 
-
     let environment =
         "detailed environment with realistic textures and depth";
-
 
     let motion =
         "natural movement, realistic physics and smooth transitions";
 
-
-    /* MARS */
 
     if (
         lower.includes("mars") ||
@@ -924,12 +924,9 @@ function buildSmartPrompt(
             "vast red deserts, rocky mountains, craters, dust particles and detailed Martian terrain";
 
         motion =
-            "realistic rover movement, drifting dust, subtle camera motion and natural environmental movement";
+            "realistic rover movement, drifting dust and subtle environmental motion";
 
     }
-
-
-    /* SPACE */
 
     else if (
         lower.includes("space") ||
@@ -952,9 +949,6 @@ function buildSmartPrompt(
 
     }
 
-
-    /* NATURE */
-
     else if (
         lower.includes("forest") ||
         lower.includes("ocean") ||
@@ -976,32 +970,25 @@ function buildSmartPrompt(
 
     }
 
-
-    /* HORROR */
-
     else if (
-        lower.includes("horror") ||
-        lower.includes("zombie") ||
-        lower.includes("scary") ||
-        lower.includes("monster")
+        lower.includes("city") ||
+        lower.includes("building") ||
+        lower.includes("street")
     ) {
 
         style =
-            "dark cinematic horror";
+            "cinematic urban film";
 
         camera =
-            "slow suspenseful tracking shots, dramatic close-ups and unexpected camera movement";
+            "smooth tracking shots, aerial establishing shots and detailed street-level close-ups";
 
         lighting =
-            "moody low-key lighting, deep shadows and atmospheric fog";
+            "realistic urban lighting, reflections and atmospheric depth";
 
         environment =
-            "dark detailed environment with realistic textures and eerie atmosphere";
+            "detailed streets, buildings, vehicles and realistic urban surroundings";
 
     }
-
-
-    /* GAMING */
 
     else if (
         lower.includes("game") ||
@@ -1023,8 +1010,6 @@ function buildSmartPrompt(
 
     }
 
-
-    /* FINAL PROMPT */
 
     return `${text}
 
@@ -1071,7 +1056,6 @@ async function generateVideo() {
         promptInput.focus();
 
         return;
-
     }
 
 
@@ -1084,16 +1068,19 @@ async function generateVideo() {
     downloadButton.disabled =
         true;
 
+    currentVideoUrl =
+        null;
+
 
     progressBar.style.width =
-        "0%";
+        "5%";
 
     progressText.textContent =
-        "0%";
+        "5%";
 
 
     setStatus(
-        "Preparing your video...",
+        "Connecting to AI video generator...",
         "working"
     );
 
@@ -1110,605 +1097,392 @@ async function generateVideo() {
             </div>
 
             <div class="preview-title">
-                Analyzing your prompt...
+                Starting AI generation...
             </div>
 
             <div class="preview-subtitle">
-                Preparing your cinematic scene
+                Sending your prompt to the backend.
             </div>
 
         </div>
 
     `;
-
-
-    const stages = [
-
-        [10, "Analyzing prompt..."],
-
-        [22, "Planning video scenes..."],
-
-        [37, "Building environment..."],
-
-        [52, "Creating camera movement..."],
-
-        [68, "Simulating lighting..."],
-
-        [82, "Rendering cinematic preview..."],
-
-        [94, "Finalizing video..."],
-
-        [100, "Video generated successfully!"]
-
-    ];
-
-
-    for (
-        const stage of stages
-    ) {
-
-        await sleep(
-            500 + Math.random() * 400
-        );
-
-
-        progressBar.style.width =
-            stage[0] + "%";
-
-
-        progressText.textContent =
-            stage[0] + "%";
-
-
-        setStatus(
-            stage[1],
-            stage[0] === 100
-                ? "success"
-                : "working"
-        );
-
-    }
-
-
-    createScenePreview(
-        prompt
-    );
-
-
-    generateButton.disabled =
-        false;
-
-    enhanceButton.disabled =
-        false;
-
-}
-
-
-/* =========================================================
-   CREATE SCENE PREVIEW
-========================================================= */
-
-function createScenePreview(
-    prompt
-) {
-
-    const lower =
-        prompt.toLowerCase();
-
-
-    const isMars =
-        lower.includes("mars") ||
-        lower.includes("martian") ||
-        lower.includes("red planet");
-
-
-    if (isMars) {
-
-        createMarsPreview();
-
-    }
-
-    else {
-
-        createSpacePreview();
-
-    }
-
-
-    createDemoDownload();
-
-}
-
-
-/* =========================================================
-   MARS PREVIEW
-========================================================= */
-
-function createMarsPreview() {
-
-    preview.innerHTML = `
-
-        <div class="demo-scene mars-scene">
-
-            <div class="stars"></div>
-
-            <div class="demo-planet mars-planet"></div>
-
-            <div class="mars-ground"></div>
-
-            <div class="mars-rock rock1"></div>
-
-            <div class="mars-rock rock2"></div>
-
-            <div class="demo-text">
-                🔴 MARS • Cinematic Preview
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   GENERAL SPACE PREVIEW
-========================================================= */
-
-function createSpacePreview() {
-
-    preview.innerHTML = `
-
-        <div class="demo-scene space-scene">
-
-            <div class="stars"></div>
-
-            <div class="demo-planet space-planet"></div>
-
-            <div class="demo-text">
-                🌌 AI STUDIO • Cinematic Preview
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   CREATE DOWNLOADABLE BROWSER VIDEO
-========================================================= */
-
-function createDemoDownload() {
-
-    if (
-        !window.MediaRecorder ||
-        !HTMLCanvasElement.prototype.captureStream
-    ) {
-
-        downloadButton.disabled =
-            true;
-
-        downloadButton.textContent =
-            "📥 Download unavailable";
-
-        return;
-
-    }
-
-
-    const canvas =
-        document.createElement(
-            "canvas"
-        );
-
-
-    canvas.width = 1280;
-    canvas.height = 720;
-
-
-    const ctx =
-        canvas.getContext("2d");
-
-
-    const stream =
-        canvas.captureStream(30);
-
-
-    let recorder;
 
 
     try {
 
-        recorder =
-            new MediaRecorder(
-                stream,
+        /*
+         * IMPORTANT:
+         * The exact prompt entered by the user is sent here.
+         * Nothing is hard-coded.
+         */
+
+        const response =
+            await fetch(
+                `${BACKEND_URL}/api/generate`,
                 {
-                    mimeType:
-                        "video/webm"
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        prompt: prompt,
+
+                        aspect_ratio: "16:9",
+
+                        resolution:
+                            resolution.value
+
+                    })
+
                 }
             );
 
-    }
 
-    catch {
+        if (!response.ok) {
 
-        recorder =
-            new MediaRecorder(
-                stream
-            );
+            let message =
+                "The backend returned an error.";
 
-    }
+            try {
 
+                const errorData =
+                    await response.json();
 
-    const chunks = [];
-
-
-    recorder.ondataavailable =
-        event => {
-
-            if (
-                event.data &&
-                event.data.size
-            ) {
-
-                chunks.push(
-                    event.data
-                );
+                message =
+                    errorData.detail ||
+                    message;
 
             }
 
-        };
+            catch {
 
-
-    recorder.onstop =
-        () => {
-
-            const blob =
-                new Blob(
-                    chunks,
-                    {
-                        type:
-                            recorder.mimeType ||
-                            "video/webm"
-                    }
-                );
-
-
-            demoVideoUrl =
-                URL.createObjectURL(
-                    blob
-                );
-
-
-            downloadButton.disabled =
-                false;
-
-
-            downloadButton.textContent =
-                "📥 Download Demo Video";
-
-
-            downloadButton.onclick =
-                downloadDemo;
-
-        };
-
-
-    recorder.start();
-
-
-    let frame = 0;
-
-
-    function draw() {
-
-        const w =
-            canvas.width;
-
-        const h =
-            canvas.height;
-
-
-        const lower =
-            promptInput.value
-                .toLowerCase();
-
-
-        const mars =
-            lower.includes("mars") ||
-            lower.includes("martian") ||
-            lower.includes("red planet");
-
-
-        const gradient =
-            ctx.createLinearGradient(
-                0,
-                0,
-                w,
-                h
-            );
-
-
-        if (mars) {
-
-            gradient.addColorStop(
-                0,
-                "#160807"
-            );
-
-            gradient.addColorStop(
-                .45,
-                "#702518"
-            );
-
-            gradient.addColorStop(
-                1,
-                "#170504"
-            );
-
-        }
-
-        else {
-
-            gradient.addColorStop(
-                0,
-                "#020617"
-            );
-
-            gradient.addColorStop(
-                .5,
-                "#172554"
-            );
-
-            gradient.addColorStop(
-                1,
-                "#09051c"
-            );
-
-        }
-
-
-        ctx.fillStyle =
-            gradient;
-
-        ctx.fillRect(
-            0,
-            0,
-            w,
-            h
-        );
-
-
-        /* Stars */
-
-        if (!mars) {
-
-            ctx.fillStyle =
-                "rgba(255,255,255,.8)";
-
-
-            for (
-                let i = 0;
-                i < 80;
-                i++
-            ) {
-
-                const x =
-                    (i * 137) % w;
-
-                const y =
-                    (i * 71) % h;
-
-                const size =
-                    i % 3 === 0
-                        ? 2
-                        : 1;
-
-
-                ctx.fillRect(
-                    x,
-                    y,
-                    size,
-                    size
-                );
+                // Keep default message
 
             }
 
-        }
-
-
-        /* Planet */
-
-        const cx =
-            w / 2;
-
-        const cy =
-            h * .48;
-
-
-        const radius =
-            145 +
-            Math.sin(
-                frame / 20
-            ) * 5;
-
-
-        const planet =
-            ctx.createRadialGradient(
-                cx - 45,
-                cy - 50,
-                15,
-                cx,
-                cy,
-                radius
-            );
-
-
-        if (mars) {
-
-            planet.addColorStop(
-                0,
-                "#ffbd8c"
-            );
-
-            planet.addColorStop(
-                .35,
-                "#c94b2c"
-            );
-
-            planet.addColorStop(
-                .72,
-                "#762518"
-            );
-
-            planet.addColorStop(
-                1,
-                "#170504"
-            );
+            throw new Error(message);
 
         }
 
-        else {
 
-            planet.addColorStop(
-                0,
-                "#bfdbfe"
-            );
+        const data =
+            await response.json();
 
-            planet.addColorStop(
-                .35,
-                "#3b82f6"
-            );
 
-            planet.addColorStop(
-                .72,
-                "#1e3a8a"
-            );
+        if (!data.job_id) {
 
-            planet.addColorStop(
-                1,
-                "#020617"
+            throw new Error(
+                "Backend did not return a job ID."
             );
 
         }
 
 
-        ctx.fillStyle =
-            planet;
+        progressBar.style.width =
+            "10%";
+
+        progressText.textContent =
+            "10%";
 
 
-        ctx.beginPath();
-
-        ctx.arc(
-            cx,
-            cy,
-            radius,
-            0,
-            Math.PI * 2
-        );
-
-        ctx.fill();
-
-
-        /* Ground */
-
-        if (mars) {
-
-            ctx.fillStyle =
-                "#6f2415";
-
-
-            ctx.beginPath();
-
-            ctx.ellipse(
-                cx,
-                h * .92,
-                w * .7,
-                h * .27,
-                0,
-                0,
-                Math.PI * 2
-            );
-
-            ctx.fill();
-
-        }
-
-
-        /* Title */
-
-        ctx.textAlign =
-            "center";
-
-
-        ctx.fillStyle =
-            "white";
-
-
-        ctx.font =
-            "bold 44px Poppins, Arial";
-
-
-        ctx.fillText(
-            mars
-                ? "MARS"
-                : "AI STUDIO",
-            cx,
-            80
+        setStatus(
+            "AI generation started...",
+            "working"
         );
 
 
-        ctx.font =
-            "24px Poppins, Arial";
-
-
-        ctx.fillStyle =
-            "rgba(255,255,255,.75)";
-
-
-        ctx.fillText(
-            "Cinematic Video Preview",
-            cx,
-            120
+        await monitorGeneration(
+            data.job_id
         );
 
-
-        frame++;
-
-
-        if (
-            frame < 180
-        ) {
-
-            requestAnimationFrame(
-                draw
-            );
-
-        }
-
-        else {
-
-            recorder.stop();
-
-        }
 
     }
 
+    catch (error) {
 
-    draw();
+        console.error(
+            "Video generation error:",
+            error
+        );
+
+
+        progressBar.style.width =
+            "0%";
+
+        progressText.textContent =
+            "0%";
+
+
+        setStatus(
+            "❌ " + error.message,
+            "error"
+        );
+
+
+        preview.innerHTML = `
+
+            <div class="preview-content">
+
+                <div class="preview-icon">
+                    ❌
+                </div>
+
+                <div class="preview-title">
+                    Video generation failed
+                </div>
+
+                <div class="preview-subtitle">
+                    ${escapeHtml(error.message)}
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+    finally {
+
+        generateButton.disabled =
+            false;
+
+        enhanceButton.disabled =
+            false;
+
+    }
 
 }
 
 
 /* =========================================================
-   DOWNLOAD
+   MONITOR GENERATION
 ========================================================= */
 
-function downloadDemo() {
+async function monitorGeneration(jobId) {
 
-    if (!demoVideoUrl) {
+    let attempts = 0;
+
+    const maximumAttempts =
+        180;
+
+
+    while (
+        attempts <
+        maximumAttempts
+    ) {
+
+        attempts++;
+
+
+        const response =
+            await fetch(
+                `${BACKEND_URL}/api/generate/${jobId}`,
+                {
+                    method: "GET"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Could not check video generation status."
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Generation:",
+            data
+        );
+
+
+        if (
+            data.status === "queued"
+        ) {
+
+            progressBar.style.width =
+                "15%";
+
+            progressText.textContent =
+                "15%";
+
+            setStatus(
+                data.message ||
+                "Waiting for AI...",
+                "working"
+            );
+
+        }
+
+
+        else if (
+            data.status === "generating"
+        ) {
+
+            const percentage =
+                Math.min(
+                    90,
+                    15 +
+                    Math.floor(
+                        attempts * 1.5
+                    )
+                );
+
+
+            progressBar.style.width =
+                percentage + "%";
+
+            progressText.textContent =
+                percentage + "%";
+
+
+            setStatus(
+                data.message ||
+                "AI is generating your video...",
+                "working"
+            );
+
+        }
+
+
+        else if (
+            data.status === "completed"
+        ) {
+
+            progressBar.style.width =
+                "100%";
+
+            progressText.textContent =
+                "100%";
+
+
+            setStatus(
+                "✅ Video generated successfully!",
+                "success"
+            );
+
+
+            showRealVideo(
+                data.video_url
+            );
+
+
+            return;
+
+        }
+
+
+        else if (
+            data.status === "failed"
+        ) {
+
+            throw new Error(
+                data.message ||
+                "Video generation failed."
+            );
+
+        }
+
+
+        await sleep(5000);
+
+    }
+
+
+    throw new Error(
+        "Video generation timed out."
+    );
+
+}
+
+
+/* =========================================================
+   DISPLAY REAL VIDEO
+========================================================= */
+
+function showRealVideo(videoUrl) {
+
+    if (!videoUrl) {
+
+        throw new Error(
+            "Backend did not return a video URL."
+        );
+
+    }
+
+
+    const fullUrl =
+        videoUrl.startsWith("http")
+            ? videoUrl
+            : BACKEND_URL + videoUrl;
+
+
+    currentVideoUrl =
+        fullUrl;
+
+
+    preview.innerHTML = `
+
+        <div class="video-container">
+
+            <video
+                id="generatedVideo"
+                controls
+                playsinline
+                preload="metadata"
+            >
+
+                <source
+                    src="${escapeHtml(fullUrl)}"
+                    type="video/mp4"
+                >
+
+                Your browser does not support video playback.
+
+            </video>
+
+        </div>
+
+    `;
+
+
+    downloadButton.disabled =
+        false;
+
+    downloadButton.textContent =
+        "📥 Download AI Video";
+
+
+    downloadButton.onclick =
+        function () {
+
+            downloadVideo(
+                currentVideoUrl
+            );
+
+        };
+
+}
+
+
+/* =========================================================
+   DOWNLOAD REAL VIDEO
+========================================================= */
+
+function downloadVideo(videoUrl) {
+
+    if (!videoUrl) {
         return;
     }
 
@@ -1720,11 +1494,15 @@ function downloadDemo() {
 
 
     link.href =
-        demoVideoUrl;
+        videoUrl;
 
 
     link.download =
-        "AI-Studio-Demo-Video.webm";
+        "AI-Studio-Video.mp4";
+
+
+    link.target =
+        "_blank";
 
 
     document.body.appendChild(
@@ -1743,7 +1521,7 @@ function downloadDemo() {
 
 
 /* =========================================================
-   DETAILS
+   UPDATE DETAILS
 ========================================================= */
 
 function updateDetails() {
@@ -1753,23 +1531,38 @@ function updateDetails() {
     ).innerHTML = `
 
         Resolution:
-        ${resolution.value.toUpperCase()}
+        ${escapeHtml(
+            resolution.value.toUpperCase()
+        )}
+
         <br>
 
         Duration:
-        ${duration.value}
+        ${escapeHtml(
+            duration.value
+        )}
+
         <br>
 
         Language:
-        ${language.value}
+        ${escapeHtml(
+            language.value
+        )}
+
         <br>
 
         Voice:
-        ${voice.value}
+        ${escapeHtml(
+            voice.value
+        )}
+
         <br>
 
         Music:
-        ${music.value}
+        ${escapeHtml(
+            music.value
+        )}
+
         <br>
 
         Subtitles:
@@ -1783,7 +1576,43 @@ function updateDetails() {
 
 
 /* =========================================================
-   HELPER
+   HTML ESCAPE
+========================================================= */
+
+function escapeHtml(value) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   SLEEP
 ========================================================= */
 
 function sleep(ms) {
@@ -1800,7 +1629,7 @@ function sleep(ms) {
 
 
 /* =========================================================
-   UPDATE DETAILS
+   UPDATE DETAILS WHEN SETTINGS CHANGE
 ========================================================= */
 
 [
@@ -1823,7 +1652,13 @@ function sleep(ms) {
 );
 
 
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
 updateDetails();
+
+checkBackend();
 
 </script>
 
